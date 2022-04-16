@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EyeBall : Ball, IEffects
+public class RedDodgeBall : Ball, IEffects
 {
-    public int rotationSpeed = 50;
+    public int rotationSpeed = 100;
 
     public AudioClip audio;
     private bool hasPlayed = false;
@@ -14,7 +14,7 @@ public class EyeBall : Ball, IEffects
     // Start is called before the first frame update
     void Start()
     {
-        damageElement = new EyeBaseDamage();
+        damageElement = new DodgeBallBaseDamage();
         ballSpin = new BallSpin();
     }
 
@@ -29,15 +29,6 @@ public class EyeBall : Ball, IEffects
             // Spin ball
             ballSpin.SpinBall(rotationSpeed);
             hasPlayed = true;
-        }
-    }
-
-    public void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "NPC")
-        {
-            // Blind player for 5 seconds or makes NPC unable to throw for 5 seconds
-           
         }
     }
 }

@@ -2,59 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpikeBall : BallDamageDecorator, IEffects
+public class SpikeBall : Ball, IEffects
 {
-    public int mass = 5;
-
-    public ArmedContext ballState;
+    public int rotationSpeed = 50;
 
     public AudioClip audio;
     private bool hasPlayed = false;
 
+    private BallSpin ballSpin;
+
     // Start is called before the first frame update
     void Start()
     {
-        ballState = new ArmedContext();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        ballEffect();
+        damageElement = new SpikeBaseDamage();
+        ballSpin = new BallSpin();
     }
 
     // Strategy pattern
     public void ballEffect()
     {
-        Debug.Log(ballState.getState());
-        if (ballState.getState())
+        if (hasPlayed == false)
         {
-
             if (hasPlayed == false)
             {
-                // Metal sound effect
+                // Spin noise effect
                 AudioSource.PlayClipAtPoint(audio, gameObject.transform.position, 3);
+
+                // Spin ball
+                ballSpin.SpinBall(rotationSpeed);
                 hasPlayed = true;
             }
         }
-        else
-        {
-            ballState.setState(new StateArmed());
-
-        }
-    }
-        
-    public SpikeBall(BallDamageElement be) : base(be)
-    {
-
     }
 
-    public override float DamageNumber()
+    private void OnCollisionEnter(Collision collision)
     {
-        return base.element.DamageNumber() + 6f;
-    }
-    public override float KnockbackNumber()
-    {
-        return base.element.KnockbackNumber() + 0.25f;
     }
 }

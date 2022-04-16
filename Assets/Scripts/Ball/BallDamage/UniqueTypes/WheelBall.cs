@@ -3,62 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Ball is super fast! Fire particle
-public class WheelBall : BallDamageDecorator, IEffects
+public class WheelBall : Ball, IEffects
 {
     public int rotationSpeed = 500;
-
-    public ArmedContext ballState;
-    public Thrower thrower;
 
     public AudioClip audio;
     private bool hasPlayed = false;
 
-    // Start is called before the first frame update
+    private BallSpin ballSpin;
+
+
     void Start()
     {
-        ballState = new ArmedContext();
-        thrower = FindObjectOfType<Thrower>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        ballEffect();
+        damageElement = new WheelBaseDamage();
+        ballSpin = new BallSpin();
     }
 
     // Strategy pattern
     public void ballEffect()
     {
-        Debug.Log(ballState.getState());
-        if (ballState.getState())
-        {
-            // Spin 
-            transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
+         if (hasPlayed == false)
+         {
+            // Spin noise effect
+            AudioSource.PlayClipAtPoint(audio, gameObject.transform.position, 3);
 
-            if (hasPlayed == false)
-            {
-                // Spin noise effect
-                AudioSource.PlayClipAtPoint(audio, gameObject.transform.position, 3);
-                hasPlayed = true;
-            }
+            // Spin ball
+            ballSpin.SpinBall(rotationSpeed);
+            hasPlayed = true;
         }
-        else
-        {
-            ballState.setState(new StateArmed());
-                   
-        }
-
-    }
-    public WheelBall(BallDamageElement be) : base(be)
-    {
     }
 
-    public override float DamageNumber()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        return base.element.DamageNumber() + 5f;
-    }
-    public override float KnockbackNumber()
-    {
-        return base.element.KnockbackNumber() + 3f;
+        
     }
 }

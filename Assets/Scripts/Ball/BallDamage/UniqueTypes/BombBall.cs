@@ -2,57 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BombBall : BallDamageDecorator, IEffects
+public class BombBall : Ball, IEffects
 {
-    public ArmedContext ballState;
+    public int rotationSpeed = 50;
 
     public AudioClip audio;
     private bool hasPlayed = false;
 
-    // Start is called before the first frame update
+    private BallSpin ballSpin;
+
+
     void Start()
     {
-        ballState = new ArmedContext();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        ballEffect();
+        damageElement = new BombBaseDamage();
+        ballSpin = new BallSpin();
     }
 
     // Strategy pattern
     public void ballEffect()
     {
-        if (ballState.getState())
+        if (hasPlayed == false)
         {
+            // Spin noise effect
+            AudioSource.PlayClipAtPoint(audio, gameObject.transform.position, 3);
 
-            if (hasPlayed == false)
-            {
-                // Spin noise effect
-                AudioSource.PlayClipAtPoint(audio, gameObject.transform.position, 200);
-                hasPlayed = true;
-            }
+            // Spin ball
+            ballSpin.SpinBall(rotationSpeed);
+            hasPlayed = true;
         }
-        else
-        {
-            ballState.setState(new StateArmed());
-
-        }
-
     }
 
-    // Decorator pattern
-    public BombBall(BallDamageElement be) : base(be)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-    }
-
-    public override float DamageNumber()
-    {
-        return base.element.DamageNumber() + 20f;
-    }
-    public override float KnockbackNumber()
-    {
-        return base.element.KnockbackNumber() + 5f;
+        
     }
 }
