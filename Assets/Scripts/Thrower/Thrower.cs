@@ -82,10 +82,12 @@ private void Update()
         hasBall = false;
         startThrow = false;
         ballOBJ.transform.LookAt(throwToward);
+        ballOBJ.GetComponent<Rigidbody>().useGravity = false;
+        ballOBJ.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
         ballOBJ.GetComponent<BallDealDamage>().IsArmed = true;
         powMult = Mathf.Clamp(powMult,0f,powMultMax);
         //ballOBJ.GetComponent<Rigidbody>().AddForce(ballOBJ.transform.forward * basePow , ForceMode.Impulse);
-        ballOBJ.GetComponent<Rigidbody>().useGravity = false;
+        
         //Debug.Log(ballOBJ.GetComponent<Rigidbody>().useGravity = false);
         ballOBJ = null;
         //Debug.Log("pow mult" + powMult);

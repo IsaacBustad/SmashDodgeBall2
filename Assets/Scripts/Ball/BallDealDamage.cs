@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BallDealDamage : MonoBehaviour
 {
-    private bool isArmed = true;
+    private bool isArmed = false;
     private Rigidbody rb;
     private Transform tf;
     private Ball myBall;
