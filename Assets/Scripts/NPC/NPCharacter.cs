@@ -4,6 +4,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 //  This is the context for the state machine
 
@@ -29,7 +30,10 @@ public class NPCharacter : MonoBehaviour
 
     private float dividerThickness;
 
-
+    private int redBallLayer = 7;
+    private int blueBallLayer = 8;
+    private int redPlayerLayer = 9;
+    private int bluePlayerLayer = 10;
 
     [SerializeField] private Animator myAnimator;
     [SerializeField] private HasBallS hasBallState;
@@ -54,11 +58,23 @@ public class NPCharacter : MonoBehaviour
 
 
         //***************************************************************************
-        if ((GameObject.FindObjectOfType<Ball>().gameObject.layer == 7 && this.gameObject.layer == 9) || (GameObject.FindObjectOfType<Ball>().gameObject.layer == 8 && this.gameObject.layer == 10))
+
+        Ball[] Ballss = GameObject.FindObjectsOfType<Ball>();
+        List<Ball> ListOfBalls = Ballss.ToList();
+
+        foreach (var p in ListOfBalls)
         {
-            AllBalls.Add(GameObject.FindObjectOfType<Ball>().gameObject);
+            if ((GameObject.FindObjectOfType<Ball>().gameObject.layer == redBallLayer && this.gameObject.layer == redPlayerLayer) || (GameObject.FindObjectOfType<Ball>().gameObject.layer == blueBallLayer && this.gameObject.layer == bluePlayerLayer))
+            {
+                daSingleton.AllBalls.Add(GameObject.FindObjectOfType<Ball>().gameObject);
+            }
         }
-        
+
+
+
+
+
+
 
         //***************************************************************************
 
@@ -74,7 +90,8 @@ public class NPCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+        Debug.Log("Allballs: " + AllBalls.Count);
         if (AllBalls.Count > 0)
         {
             Debug.Log("State: " + this.State);
@@ -109,7 +126,7 @@ public class NPCharacter : MonoBehaviour
         {
             GetHit(collision);
         }
-        
+
     }
 
 
@@ -124,62 +141,65 @@ public class NPCharacter : MonoBehaviour
     }
     public GameObject FindClosestBall()
     {
-        GameObject closestBall = null;
+        //GameObject closestBall = null;
         //Loop through list of AllBalls and update Eligible Balls
 
-            foreach (var p in AllBalls)
+        foreach (var p in AllBalls)
+        {
+            if ((p.layer == redBallLayer && this.gameObject.layer == redPlayerLayer) || (p.layer == blueBallLayer && this.gameObject.layer == bluePlayerLayer))
             {
-                if ((p.layer == 7 && this.gameObject.layer == 9) || (p.layer == 8 && this.gameObject.layer == 10))
-                {
-                    if (!EligibleBalls.Contains(p))
-                    { EligibleBalls.Add(p); }
-                }
-                else
-                {
-                    if (EligibleBalls.Contains(p))
-                    { EligibleBalls.Remove(p); }
-                }
+                if (!EligibleBalls.Contains(p))
+                { EligibleBalls.Add(p); }
             }
-            // Find ball with lowest distance
-            foreach (var p in EligibleBalls)
+            else
             {
-                float distance = (p.transform.position - this.transform.position).magnitude;
+                if (EligibleBalls.Contains(p))
+                { EligibleBalls.Remove(p); }
+            }
+        }
+        // Find ball with lowest distance
+        foreach (var p in EligibleBalls)
+        {
+            float distance = (p.transform.position - this.transform.position).magnitude;
 
-                if (closestBall == null)
-                {
-                    lowestDistance = distance;
-                    closestBall = p;
-                }
-                else if (distance < lowestDistance)
-                {
-                    lowestDistance = distance;
-                    closestBall = p;
-                }
+            if (closestBall == null)
+            {
+                lowestDistance = distance;
+                closestBall = p;
             }
-            return closestBall;
-        
+            else if (distance < lowestDistance)
+            {
+                lowestDistance = distance;
+                closestBall = p;
+            }
+        }
+        return closestBall;
+
     }
 
     public GameObject FindClosestEnemy()
     {
-        closestEnemy = null;
+
+        //closestEnemy = null;
         //Loop through list of AllPlayers and update EligiblePlayers
-        foreach (var p in this.allPlayers)
+        foreach (var p in AllPlayers)
         {
-            if ((p.layer == 7 && this.gameObject.layer == 9) || (p.layer == 8 && this.gameObject.layer == 10))
+            Debug.Log("AllPlayers: " + p.name);
+
+            if ((p.layer == 9 && this.gameObject.layer == bluePlayerLayer) || (p.layer == bluePlayerLayer && this.gameObject.layer == redPlayerLayer))
             {
-                if (!eligiblePlayers.Contains(p))
-                { eligiblePlayers.Add(p); }
+                if (!EligiblePlayers.Contains(p))
+                { EligiblePlayers.Add(p); }
             }
             else
             {
-                if (eligiblePlayers.Contains(p))
-                { eligiblePlayers.Remove(p); }
+                if (EligiblePlayers.Contains(p))
+                { EligiblePlayers.Remove(p); }
             }
         }
 
         // Find enemy with lowest distance
-        foreach (var p in eligiblePlayers)
+        foreach (var p in EligiblePlayers)
         {
             float distance = (p.transform.position - this.transform.position).magnitude;
 

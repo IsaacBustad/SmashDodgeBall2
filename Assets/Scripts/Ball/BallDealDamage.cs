@@ -9,7 +9,19 @@ public class BallDealDamage : MonoBehaviour
     private Transform tf;
     private Ball myBall;
     private float mySpeedMult = 1f;
+    private float maxVel = 1;
+    private LayerMask myBallLayer;
 
+    
+    public LayerMask MyBallLayer
+    {
+        set { if (value == 7 || value == 8) { myBallLayer = value; } }
+    }
+
+    public float MaxVel
+    {
+        set { maxVel = value; }
+    }
     public float MySpeedMult
     {
         set { mySpeedMult = value; }
@@ -27,11 +39,13 @@ public class BallDealDamage : MonoBehaviour
         
     }
 
+    // updates for physics Sys
     private void FixedUpdate()
     {
         MoveTheBall();
     }
 
+    // sence collison
     private void OnCollisionEnter(Collision collision)
     {
         if (isArmed == true)
@@ -42,18 +56,30 @@ public class BallDealDamage : MonoBehaviour
        
     }
 
-    public void MoveTheBall()
+    // moave ball when armed
+    private void MoveTheBall()
     {
         if (isArmed == true)
         {
-            Vector3 mvPT = tf.position + new Vector3(0,0,1) * Time.deltaTime * mySpeedMult;
+            /*Vector3 mvPT = tf.position + new Vector3(0,0,1) * Time.deltaTime * mySpeedMult;
             rb.MovePosition( mvPT * mySpeedMult);
-            Debug.Log(mvPT);
+            Debug.Log(mvPT);*/
+
+            rb.AddForce(gameObject.transform.forward * 50, ForceMode.Force);
+            LimitBallVell();
         }
         
     }
 
-
+    // limit velocity
+    private void LimitBallVell()
+    {
+        if (rb.velocity.magnitude > maxVel)
+        {
+            Vector3 limitedVel = rb.velocity.normalized * maxVel;
+            rb.velocity = limitedVel;
+        }
+    }
 
     private void DoDammage(Collision collision)
     {
@@ -63,14 +89,23 @@ public class BallDealDamage : MonoBehaviour
 
         if (charHealth != null)
         {
-            Debug.Log("health");
-            charHealth.TakeDammage(myBall.damageElement.DamageNumber(), myBall.damageElement.KnockbackNumber(), this.gameObject.transform);
-            Destroy(this.gameObject, 1f);
+            if (EnemyTeam(collision))
+            {
+                Debug.Log("health");
+                charHealth.TakeDammage(myBall.damageElement.DamageNumber(), myBall.damageElement.KnockbackNumber(), this.gameObject.transform);
+                Destroy(this.gameObject, 1f);
+            }
         }
-        else
-        {
-            isArmed = false;
-        }
+        isArmed = false;
+        myBall.ResetBaseDamage();
         gameObject.GetComponent<Rigidbody>().useGravity = true;
+    }
+
+    private bool EnemyTeam(Collision collision)
+    {
+        Debug.Log("ball = " + myBall.ballLayer.value + "player = " + collision.gameObject.layer);
+        if (myBall.gameObject.layer == 7 && collision.gameObject.layer == 10) { return true; } 
+        else if (myBall.gameObject.layer == 8 && collision.gameObject.layer == 9) { return true; } 
+        else { return false; }
     }
 }

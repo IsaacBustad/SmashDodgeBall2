@@ -1,4 +1,0 @@
-repository "SmashDodgeBall@ijbbustad@cloud"
-  path "/"
-    smartbranch "/main/JoshBranch"   
-     

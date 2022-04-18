@@ -5,9 +5,9 @@ using UnityEngine;
 public sealed class Singleton : ISubject
 {
     private static Singleton instance = null;
-    private List<GameObject> allBalls;
-    private List<GameObject> allPlayers;
-    private List<CharacterBroadcast> observers;
+    private List<GameObject> allBalls = new List<GameObject>();
+    private List<GameObject> allPlayers = new List<GameObject>();
+    private List<CharacterBroadcast> observers = new List<CharacterBroadcast>();
 
     public Queue<GameObject> OutPlayers = new Queue<GameObject>();
 
@@ -19,7 +19,7 @@ public sealed class Singleton : ISubject
     {
         get
         {
-            if(Singleton.instance == null)
+            if (Singleton.instance == null)
             {
                 Singleton.instance = new Singleton();
                 Singleton.instance.observers = new List<CharacterBroadcast>();
@@ -33,10 +33,10 @@ public sealed class Singleton : ISubject
     }
 
 
-    public void RegisterObserver(CharacterBroadcast g)
+    public void RegisterObserver(CharacterBroadcast c)
     {
-        this.observers.Add(g);
-        this.AllPlayers.Add(g.gameObject);
+        this.observers.Add(c);
+        this.AllPlayers.Add(c.gameObject);
         Notify();
     }
     public void RemoveObserver(CharacterBroadcast o)
@@ -46,16 +46,20 @@ public sealed class Singleton : ISubject
     public void BallUpdated(List<GameObject> newBalls)
     {
         this.AllBalls = newBalls;
-        Notify();
+        //Notify();  un-comment after NPC is getting a ball and throwing it :^)
     }
     public void Notify()
     {
-        foreach(var o in observers)
+        foreach (var o in observers)
         {
             o.updateObserver(AllBalls, AllPlayers);
         }
     }
 
+    public override string ToString()
+    {
+        return "Singleton is Alive!!!";
+    }
 
     public List<GameObject> AllBalls
     {
