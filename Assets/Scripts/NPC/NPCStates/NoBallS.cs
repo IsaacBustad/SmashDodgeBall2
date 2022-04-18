@@ -12,20 +12,29 @@ public class NoBallS : MonoBehaviour, INPCState
     private float distanceToBall;
     private float lowestDistance;
     private GameObject closestBall;
-    
+
+    private int redBallLayer = 7;
+    private int blueBallLayer = 8;
+    private int redPlayerLayer = 9;
+    private int bluePlayerLayer = 10;
+
     void Awake()
     {
         NPC = gameObject.GetComponent<NPCharacter>();
-        
+
     }
 
     public void GoGetBall()
     {   //Find the closest ball. Move to it, and pick it up.
-        Debug.Log("5");
+
         closestBall = NPC.FindClosestBall();
-        MoveTo(closestBall.transform.position);
-        PickUpBall(closestBall);
-        Debug.Log("NoBallS, GoGetBall");
+
+        if (closestBall)
+        {
+            MoveTo(closestBall.transform.position);
+            PickUpBall(closestBall);
+        }
+
     }
     public void GetHit(Collision aCollision)
     {
@@ -42,22 +51,46 @@ public class NoBallS : MonoBehaviour, INPCState
     }
     public void YoureIn()
     {
-        // Meaningless
     }
-    
+
 
 
     public void MoveTo(Vector3 aPoint)
     {
-        Vector3 directionToPoint = (aPoint - this.NPC.transform.position).normalized;
-        NPC.Rb.AddForce(directionToPoint * 20, ForceMode.Force);
-        Debug.Log("NoBallS, MoveTo");
+        if (gameObject.layer == redPlayerLayer && aPoint.z >= 0)
+        {
+            aPoint.z = 0;
+        }
+        else if (gameObject.layer == bluePlayerLayer && aPoint.z <= 0)
+        {
+            aPoint.z = 0;
+        }
+
+        float distanceToPoint = (aPoint - this.transform.position).magnitude;
+        if (distanceToPoint > 5.0f)
+        {
+            Vector3 directionToPoint = (aPoint - this.NPC.transform.position).normalized;
+            NPC.Rb.AddForce(directionToPoint * 20, ForceMode.Force);
+
+        }
+        if (distanceToPoint <= 5.0f)
+        {
+            this.NPC.Rb.velocity = new Vector3(0, 0, 0);
+
+        }
+
+
+
+
+
+
+
     }
 
 
     public void PickUpBall(GameObject aBall)
     {
-        
+
         distanceToBall = (closestBall.transform.position - this.transform.position).magnitude;
         if (!NPC.myThrower.hasBall && distanceToBall < 5.0f)
         {
