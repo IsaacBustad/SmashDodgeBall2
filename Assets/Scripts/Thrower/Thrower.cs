@@ -21,12 +21,12 @@ public class Thrower : MonoBehaviour
     [SerializeField] private float powMultMax = 1f;
     //[SerializeField] private float drawDistance = 300f;
     [SerializeField] private Transform sightLine;
-    [SerializeField] public LayerMask ballLayer;
+    [SerializeField] public int ballLayer;
     [SerializeField] private Transform throwToward;
     private Transform ballHolder;
 
     private float powMult = 1f;
-    private float timeToThrow = 1.333f;
+    private float timeToThrow = 0.1f;
     private WaitForSeconds waitToThrow;
     
     
@@ -36,8 +36,7 @@ public class Thrower : MonoBehaviour
     {
         ballHolder = gameObject.GetComponent<Transform>();
         waitToThrow = new WaitForSeconds(timeToThrow);
-
-}
+    }
 
 private void Update()
     {
@@ -72,28 +71,30 @@ private void Update()
 
     public void ThrowBall(CharacterState aCS)
     {
-        
+        BallDealDamage aBallDam = ballOBJ.GetComponent<BallDealDamage>();
+        Rigidbody aBallRb = ballOBJ.GetComponent<Rigidbody>();
+
         
         aCS.IsThrow();
+        
+        powMult = Mathf.Clamp(powMult, 0f, powMultMax);
         ballOBJ.GetComponent<Ball>().damageElement = MultWrapper(ballOBJ.GetComponent<Ball>().damageElement);
-        //ballOBJ.GetComponent<BallState>().IsArmed();
-        //ballOBJ.GetComponent<Ball>().ballLayer = ballLayer;
 
         hasBall = false;
         startThrow = false;
         ballOBJ.transform.LookAt(throwToward);
-        ballOBJ.GetComponent<Rigidbody>().useGravity = false;
-        ballOBJ.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        ballOBJ.GetComponent<BallDealDamage>().IsArmed = true;
-        powMult = Mathf.Clamp(powMult,0f,powMultMax);
-        //ballOBJ.GetComponent<Rigidbody>().AddForce(ballOBJ.transform.forward * basePow , ForceMode.Impulse);
+
+        // prep ball to throw
         
-        //Debug.Log(ballOBJ.GetComponent<Rigidbody>().useGravity = false);
+        aBallRb.useGravity = false;
+        aBallRb.velocity = Vector3.zero;
+        aBallDam.MaxVel = powMult * basePow;
+        aBallDam.IsArmed = true;
+        
+        
         ballOBJ = null;
-        //Debug.Log("pow mult" + powMult);
-            
-        //StartCoroutine(WaitThrowDur(aCS));
-        
+
+        StartCoroutine(WaitThrowDur(aCS));
     }
 
     public void ThrowBall(CharacterState aCS, Transform targ )
@@ -101,19 +102,31 @@ private void Update()
         
         
         aCS.IsThrow();
-        ballOBJ.GetComponent<Ball>().damageElement = MultWrapper(ballOBJ.GetComponent<Ball>().damageElement);
-        //ballOBJ.GetComponent<BallState>().IsArmed();
-        ballOBJ.GetComponent<Ball>().ballLayer = ballLayer;
+        ballOBJ.GetComponent<Ball>().damageElement = MultWrapper(ballOBJ.GetComponent<Ball>().damageElement);        
 
         hasBall = false;
         startThrow = false;
         ballOBJ.transform.LookAt(targ);
 
         ballOBJ.GetComponent<BallDealDamage>().IsArmed = true;
-        ballOBJ.GetComponent<Rigidbody>().AddForce(ballOBJ.transform.forward * basePow * powMult, ForceMode.Impulse);
+        ballOBJ.GetComponent<Rigidbody>().AddForce(ballOBJ.transform.forward * powMult, ForceMode.Impulse);
             
-        //StartCoroutine(WaitThrowDur(aCS));
+        /*powMult = Mathf.Clamp(powMult, 0f, powMultMax);
+        ballOBJ.GetComponent<Ball>().damageElement = MultWrapper(ballOBJ.GetComponent<Ball>().damageElement);
+
+        hasBall = false;
+        startThrow = false;
+        ballOBJ.transform.LookAt(throwToward);
+
+        // prep ball to throw
         
+        aBallRb.useGravity = false;
+        aBallRb.velocity = Vector3.zero;
+        aBallDam.MaxVel = powMult * basePow;
+        aBallDam.IsArmed = true;
+        */
+        
+        ballOBJ = null;
     }
 
     public void ThrowBall(Transform targ)
@@ -122,16 +135,28 @@ private void Update()
 
         //aCS.IsThrow();
         ballOBJ.GetComponent<Ball>().damageElement = MultWrapper(ballOBJ.GetComponent<Ball>().damageElement);
-        //ballOBJ.GetComponent<BallState>().IsArmed();
-        //ballOBJ.GetComponent<Ball>().ballLayer = ballLayer;
+        
 
         hasBall = false;
         startThrow = false;
         ballOBJ.transform.LookAt(targ);
 
-        ballOBJ.GetComponent<Rigidbody>().AddForce(ballOBJ.transform.forward * basePow * powMult, ForceMode.Impulse);
+        ballOBJ.GetComponent<Rigidbody>().AddForce(ballOBJ.transform.forward * powMult, ForceMode.Impulse);
 
-        //StartCoroutine(WaitThrowDur(aCS));
+        /*powMult = Mathf.Clamp(powMult, 0f, powMultMax);
+        ballOBJ.GetComponent<Ball>().damageElement = MultWrapper(ballOBJ.GetComponent<Ball>().damageElement);
+
+        hasBall = false;
+        startThrow = false;
+        ballOBJ.transform.LookAt(throwToward);
+
+        // prep ball to throw
+        
+        aBallRb.useGravity = false;
+        aBallRb.velocity = Vector3.zero;
+        aBallDam.MaxVel = powMult * basePow;
+        aBallDam.IsArmed = true;
+        */
 
     }
 
@@ -145,6 +170,6 @@ private void Update()
     {
         yield return waitToThrow;
         aCS.IsIdle();
-        //aCS.myAnim.SetBool("IsThrow", false);
+        
     }
 }

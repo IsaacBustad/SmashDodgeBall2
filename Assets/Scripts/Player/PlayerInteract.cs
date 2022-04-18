@@ -60,6 +60,8 @@ public class PlayerInteract : MonoBehaviour
 
                     aGO.GetComponent<InvokeInteraction>().Execute(this.gameObject);
                     thrower.ballOBJ = aGO;
+                    thrower.ballOBJ.layer = 7;
+                    thrower.ballOBJ.GetComponent<Ball>().ballLayer = 7;
                     thrower.hasBall = true;
                     StartCoroutine(WaitToInteract());
                 }

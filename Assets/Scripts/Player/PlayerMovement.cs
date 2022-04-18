@@ -120,16 +120,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void PerGrndChk()
     {
-        //Debug.Log("startchk");
+        
         isGrounded = Physics.Raycast(grdTfPt.position, Vector3.down,
                                      playerHeight * 0.5f + heightBuffer,
                                      whatIsGround);
-        //SDebug.Log(isGrounded == true);
-        //myAnim.SetBool("IsGrounded", myCharState.GroundCheck());
+        
         
         if (isGrounded == true)
         {
-            //Debug.Log(isGrounded);
             myCharState.IsGrounded();
             rb.drag = groundDrag;
         }
@@ -143,7 +141,13 @@ public class PlayerMovement : MonoBehaviour
     
     private void FixedUpdate()
     {
-        MovePlayer();
+        if (myCharState.CurMoveState() != "h")
+        {
+            if (myCharState.CurMoveState() != "t")
+            {
+                MovePlayer();
+            }
+        }
     }
 
     // get movement input. Call in update
@@ -190,17 +194,11 @@ public class PlayerMovement : MonoBehaviour
     public void MovePlayer()
     {
         // calc move direction
-        movDir = tf.forward * fNb + tf.right * rNl;
-        //rb.AddForce(movDir * 50, ForceMode.Force);
-
-        if (myCharState.CurMoveState() == "t")
-        {
-            myCharState.IsIdle();
-            rb.AddForce(movDir * 50 * airMult, ForceMode.Force);
-        }
+        movDir = tf.forward * fNb + tf.right * rNl; 
+        
 
 
-        else if (myCharState.GroundCheck() == true && myCharState.CurMoveState() != "t")
+        if (myCharState.GroundCheck() == true && myCharState.CurMoveState() != "t")
         {
             
             
@@ -314,7 +312,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.GetKeyDown(throwKey))
             {
-                //Debug.Log("down");
+                
                 myThrower.startThrow = true;
                 //myCharState.IsThrow();
             }

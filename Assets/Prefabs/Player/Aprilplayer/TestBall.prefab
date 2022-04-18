@@ -149,10 +149,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageElement: {fileID: 0}
+  damageDecorator: {fileID: 0}
+  location: {x: 0, y: 0, z: 0}
   ballLayer:
     serializedVersion: 2
     m_Bits: 0
-  damageDecorator: {fileID: 0}
 --- !u!114 &2408584651817969149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,7 +199,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7923753105411483642}
   serializedVersion: 2
-  m_Mass: 0.005
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 1
@@ -231,4 +232,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f20aff89d7b3204aae8cd2e5f870a11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isArmed: 1
