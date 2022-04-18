@@ -5,6 +5,7 @@ using UnityEngine;
 public class CharacterBroadcast : MonoBehaviour, IObserver
 {
     private NPCharacter myNPC;
+    private Singleton mySingleton = Singleton.Instance;
     public void updateObserver(List<GameObject> aListOfBalls, List<GameObject> aListOfPlayers)
     {
         myNPC.AllBalls = aListOfBalls;
@@ -13,20 +14,20 @@ public class CharacterBroadcast : MonoBehaviour, IObserver
 
     private void Awake()
     {
+        Debug.Log("MyGameObject: " + this.gameObject.name);
         myNPC = this.gameObject.GetComponent<NPCharacter>();
-        myNPC.daSingleton.RegisterObserver(this);
 
     }
-    
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        mySingleton.RegisterObserver(this);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
