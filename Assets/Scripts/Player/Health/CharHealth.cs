@@ -20,7 +20,7 @@ public class CharHealth : MonoBehaviour
     //public Transform aTf;
 
     [Header("Do not edit")]
-    [SerializeField] private float health = 0f;
+    [SerializeField] public float health = 0f;
 
     //read only
     public float Health
