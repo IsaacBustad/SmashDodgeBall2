@@ -9,7 +9,7 @@ public class Ball : MonoBehaviour
 
     //for BallFactory
     public Vector3 location;
-    public LayerMask ballLayer;
+    public int ballLayer;
 
 
     // Start is called before the first frame update
