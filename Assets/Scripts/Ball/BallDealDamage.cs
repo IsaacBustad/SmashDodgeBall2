@@ -103,7 +103,6 @@ public class BallDealDamage : MonoBehaviour
 
     private bool EnemyTeam(Collision collision)
     {
-        Debug.Log("ball = " + myBall.ballLayer.value + "player = " + collision.gameObject.layer);
         if (myBall.gameObject.layer == 7 && collision.gameObject.layer == 10) { return true; } 
         else if (myBall.gameObject.layer == 8 && collision.gameObject.layer == 9) { return true; } 
         else { return false; }
