@@ -7,13 +7,15 @@ using UnityEngine;
 
 public class BallSpawner : MonoBehaviour
 {
-    public float maxDistance = 10; //maxdis from player
-
+    // spawn time
     public float timeSpawnMax = 10f;
     public float timeSpawnMin = 3f;
 
     public float spawnTime; //interval
     public float lastSpawnTime;
+
+    // position
+    public Vector3[] locations;
 
     //Singleton
     List<GameObject> ballList = new List<GameObject>(); //that's in the game
@@ -22,23 +24,13 @@ public class BallSpawner : MonoBehaviour
     //Class Array
     public BallFactory[] ballTypeList; //array
     //public List<BallFactory> ballTypeList; //list
-    BombBallFactory bombBallFact;
-    EyeBallFactory eyeBallFact;
-    RedDodgeBallFactory redBallFact;
-    SpikeBallFactory spikeBallFact;
-    WheelBallFactory wheelBallFact;
-        
+
 
     void Start()
     {
+
         spawnTime = Random.Range(timeSpawnMin, timeSpawnMax);
         lastSpawnTime = 0;
-
-        ballTypeList[0] = bombBallFact;
-        ballTypeList[1] = eyeBallFact;
-        ballTypeList[2] = redBallFact;
-        ballTypeList[3] = spikeBallFact;
-        ballTypeList[4] = wheelBallFact;
 
     }
 
@@ -47,11 +39,11 @@ public class BallSpawner : MonoBehaviour
     {
         if (Time.time >= lastSpawnTime + spawnTime)
         { //if time to spawn
-
             lastSpawnTime = Time.time;
             spawnTime = Random.Range(timeSpawnMin, timeSpawnMax);
-            int listNum = Random.Range(0, ballTypeList.Length);
-            ballTypeList[listNum].SpawnBall();
+            int listNum = Random.Range(0, 5); //for balltypelist
+            int locationNum = Random.Range(0, locations.Length);
+            GameObject newBall = ballTypeList[listNum].SpawnBall(locations[locationNum]);
         }
 
     }

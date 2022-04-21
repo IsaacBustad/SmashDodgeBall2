@@ -9,14 +9,13 @@ public class BombBallFactory : BallFactory
     BombBall bombBall;
     BallSpawner spawner;
 
-    public override Ball SpawnBall()
+    /*public override GameObject SpawnBall()
     {
         //Spawn
-        //GameObject ball = 
-        Instantiate(bombBall.gameObject, bombBall.location , Quaternion.identity); //create and spawn
+        GameObject ball = Instantiate(bombBall.gameObject, bombBall.location , Quaternion.identity); //create and spawn
 
         spawner.AddBallList(bombBall.gameObject);
 
-        return new BombBall();
-    }
+        return ball;
+    }*/
 }
