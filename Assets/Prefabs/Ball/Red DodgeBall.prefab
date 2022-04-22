@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 2217916180983270549}
   - component: {fileID: 8276440811061957861}
   - component: {fileID: 9003521323761346489}
-  - component: {fileID: 7612232125075502450}
   m_Layer: 0
   m_Name: Red DodgeBall
   m_TagString: Untagged
@@ -126,21 +125,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4837efdbd1cbf034789282385832d9d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageElement: {fileID: 7612232125075502450}
-  damageDecorator: {fileID: 0}
   location: {x: 0, y: 0, z: 0}
   ballLayer: 0
-  rotationSpeed: 100
-  audio: {fileID: 0}
---- !u!114 &7612232125075502450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2217916180983270548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54f58f45d85198849a9dbe71046f385e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

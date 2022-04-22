@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EyeBall : Ball, IEffects
 {
-    public int rotationSpeed = 50;
-
     public AudioClip audio;
     private bool hasPlayed = false;
 

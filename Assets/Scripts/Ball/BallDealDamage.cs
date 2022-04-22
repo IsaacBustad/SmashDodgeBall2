@@ -12,6 +12,9 @@ public class BallDealDamage : MonoBehaviour
     private float maxVel = 1;
     private LayerMask myBallLayer;
 
+    [SerializeField] private BallDamageEffect myDamageEffect;
+
+    public bool IsArmed() { return isArmed; }
     
     public LayerMask MyBallLayer
     {
