@@ -26,11 +26,12 @@ public class NoBallS : MonoBehaviour, INPCState
 
     public void GoGetBall()
     {   //Find the closest ball. Move to it, and pick it up.
-
+       
         closestBall = NPC.FindClosestBall();
-
-        if (closestBall)
+        
+        if (closestBall != null)
         {
+            Debug.Log("me: " + this.name + " closest ballxxxxxxx: " + closestBall.name);
             MoveTo(closestBall.transform.position);
             PickUpBall(closestBall);
         }
@@ -57,29 +58,33 @@ public class NoBallS : MonoBehaviour, INPCState
 
     public void MoveTo(Vector3 aPoint)
     {
-        if (gameObject.layer == redPlayerLayer && aPoint.z >= 0)
+        //Set animation state
+        NPC.MyACS.IsRun();
+
+        if (gameObject.layer == redPlayerLayer && aPoint.z <= 0)
         {
             aPoint.z = 0;
         }
-        else if (gameObject.layer == bluePlayerLayer && aPoint.z <= 0)
+        else if (gameObject.layer == bluePlayerLayer && aPoint.z >= 0)
         {
             aPoint.z = 0;
         }
 
         float distanceToPoint = (aPoint - this.transform.position).magnitude;
-        if (distanceToPoint > 5.0f)
+        if (distanceToPoint > 1.0f)
         {
             Vector3 directionToPoint = (aPoint - this.NPC.transform.position).normalized;
             NPC.Rb.AddForce(directionToPoint * 20, ForceMode.Force);
 
-        }
-        if (distanceToPoint <= 5.0f)
+        }else{this.NPC.Rb.velocity = new Vector3(0, 0, 0);}
+
+
+        //Speed limit based on animation state (myACS)
+        if (this.NPC.Rb.velocity.magnitude > this.NPC.MyACS.GetMoveSpeed())
         {
-            this.NPC.Rb.velocity = new Vector3(0, 0, 0);
-
+            Vector3 tempVel = this.NPC.Rb.velocity.normalized;
+            this.NPC.Rb.velocity = this.NPC.MyACS.GetMoveSpeed() * tempVel;
         }
-
-
 
 
 
@@ -92,7 +97,7 @@ public class NoBallS : MonoBehaviour, INPCState
     {
 
         distanceToBall = (closestBall.transform.position - this.transform.position).magnitude;
-        if (!NPC.myThrower.hasBall && distanceToBall < 5.0f)
+        if (!NPC.myThrower.hasBall && distanceToBall < 2.0f)
         {
             Debug.Log("NoBallS, PickUpBall");
             NPC.myThrower.ballOBJ = aBall;

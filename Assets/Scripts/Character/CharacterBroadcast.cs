@@ -14,7 +14,7 @@ public class CharacterBroadcast : MonoBehaviour, IObserver
 
     private void Awake()
     {
-        Debug.Log("MyGameObject: " + this.gameObject.name);
+        
         myNPC = this.gameObject.GetComponent<NPCharacter>();
 
     }

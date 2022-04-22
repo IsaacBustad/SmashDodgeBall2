@@ -27,7 +27,6 @@ public class HasBallS : MonoBehaviour, INPCState
     void Awake()
     {
         NPC = gameObject.GetComponent<NPCharacter>();
-
     }
     public void GoGetBall()
     {
@@ -55,18 +54,35 @@ public class HasBallS : MonoBehaviour, INPCState
             NPC.State = NPC.NoBallState;
         }
     }
+
+    bool throwing = true;
     public void ThrowBall()
     {
-
+        // Wait until you're at the line
         if (MoveToLine())
         {
-            closestEnemy = NPC.FindClosestEnemy();
-            Debug.Log("Closest Enemy: " + closestEnemy.name);
+            //throwing = false;
+            if (throwing == true)
+            {
+                closestEnemy = NPC.FindClosestEnemy();
+                Debug.Log("Closest Enemy: " + closestEnemy.name);
 
-            // throw ball at them
-            NPC.myThrower.startThrow = true;
-            NPC.myThrower.ThrowBall(closestEnemy.transform);
-            NPC.State = NPC.NoBallState;
+
+                // Throw ball at them
+                NPC.myThrower.startThrow = true;
+                NPC.myThrower.ThrowBall(NPC.MyACS, closestEnemy.transform);
+                NPC.State = NPC.NoBallState;
+                throwing = false;
+            }
+    
+            
+            // Wait for thrower to be done - it's done when it puts you into idle
+            if (NPC.MyACS.CurMoveState() == "i")
+            {
+                NPC.State = NPC.NoBallState;
+                throwing = true;
+            }
+            
         }
 
     }
@@ -76,7 +92,10 @@ public class HasBallS : MonoBehaviour, INPCState
     }
     public void MoveTo(Vector3 aPoint)
     {
+        //Set animation state
+        NPC.MyACS.IsRun();
 
+        
         if (gameObject.layer == redPlayerLayer && aPoint.z >= 0)
         {
             aPoint.z = 0;
@@ -87,15 +106,24 @@ public class HasBallS : MonoBehaviour, INPCState
         }
 
         float distanceToPoint = (aPoint - this.transform.position).magnitude;
-        if (distanceToPoint >= 5.0f)
+        if (distanceToPoint >= 1.0f)
         {
             Vector3 directionToPoint = (aPoint - this.NPC.transform.position).normalized;
             this.NPC.Rb.AddForce(directionToPoint * 20, ForceMode.Force);
         }
-
-        if (distanceToPoint < 5.0f)
-        {
+        else 
+        { 
             this.NPC.Rb.velocity = new Vector3(0, 0, 0);
+            
+        }
+        
+            
+       
+        //Speed limit based on animation state (myACS)
+        if (this.NPC.Rb.velocity.magnitude > this.NPC.MyACS.GetMoveSpeed())
+        {
+            Vector3 tempVel = this.NPC.Rb.velocity.normalized;
+            this.NPC.Rb.velocity = this.NPC.MyACS.GetMoveSpeed() * tempVel;
         }
 
     }
@@ -106,14 +134,15 @@ public class HasBallS : MonoBehaviour, INPCState
         borderLinePoint.x = NPC.transform.position.x;
         borderLinePoint.y = NPC.transform.position.y;
         borderLinePoint.z = 0;
-        MoveTo(borderLinePoint);
+        
 
         float distanceToPoint = (borderLinePoint - this.transform.position).magnitude;
-        if (distanceToPoint < 5.0f)
+        if (distanceToPoint <= 3.0f)
         {
             return true;
         }
-        else return false;
+        else MoveTo(borderLinePoint); 
+        return false;
 
     }
 

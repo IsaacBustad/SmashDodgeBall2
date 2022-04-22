@@ -37,6 +37,9 @@ public sealed class Singleton : ISubject
     {
         this.observers.Add(c);
         this.AllPlayers.Add(c.gameObject);
+
+
+       
         Notify();
     }
     public void RemoveObserver(CharacterBroadcast o)
@@ -46,7 +49,7 @@ public sealed class Singleton : ISubject
     public void BallUpdated(List<GameObject> newBalls)
     {
         this.AllBalls = newBalls;
-        //Notify();  un-comment after NPC is getting a ball and throwing it :^)
+        Notify(); 
     }
     public void Notify()
     {

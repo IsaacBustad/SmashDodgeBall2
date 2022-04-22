@@ -12,6 +12,7 @@ public class NPCharacter : MonoBehaviour
 {
 
     private INPCState state;
+    private CharacterState myACS;
     private CharacterBroadcast myCharacterBroadcast;
 
     private List<GameObject> allBalls = new List<GameObject>();
@@ -25,7 +26,6 @@ public class NPCharacter : MonoBehaviour
 
     private GameObject divider;
     private Rigidbody rb;
-    private CharacterState myCharState;
     private float lowestDistance;
 
     private float dividerThickness;
@@ -35,7 +35,7 @@ public class NPCharacter : MonoBehaviour
     private int redPlayerLayer = 9;
     private int bluePlayerLayer = 10;
 
-    [SerializeField] private Animator myAnimator;
+    
     [SerializeField] private HasBallS hasBallState;
     [SerializeField] private NoBallS noBallState;
     [SerializeField] private OutS outState;
@@ -44,9 +44,11 @@ public class NPCharacter : MonoBehaviour
 
     void Awake()
     {
+
+        
+        myACS = this.gameObject.GetComponent<CharacterState>();
         myCharacterBroadcast = this.gameObject.GetComponent<CharacterBroadcast>();
         Rb = this.gameObject.GetComponent<Rigidbody>();
-        myCharState = gameObject.GetComponent<CharacterState>();
         Divider = GameObject.FindGameObjectWithTag("Divider");
 
         HasBallState = gameObject.GetComponent<HasBallS>();
@@ -55,20 +57,24 @@ public class NPCharacter : MonoBehaviour
 
         this.state = NoBallState;
 
-
+        
 
         //***************************************************************************
 
         Ball[] Ballss = GameObject.FindObjectsOfType<Ball>();
         List<Ball> ListOfBalls = Ballss.ToList();
 
-        foreach (var p in ListOfBalls)
+        foreach (Ball p in ListOfBalls)
         {
             if ((GameObject.FindObjectOfType<Ball>().gameObject.layer == redBallLayer && this.gameObject.layer == redPlayerLayer) || (GameObject.FindObjectOfType<Ball>().gameObject.layer == blueBallLayer && this.gameObject.layer == bluePlayerLayer))
             {
                 daSingleton.AllBalls.Add(GameObject.FindObjectOfType<Ball>().gameObject);
+               
             }
+            
         }
+
+        
 
 
 
@@ -91,10 +97,8 @@ public class NPCharacter : MonoBehaviour
     void Update()
     {
 
-        Debug.Log("Allballs: " + AllBalls.Count);
         if (AllBalls.Count > 0)
         {
-            Debug.Log("State: " + this.State);
             GoGetBall();
         }
 
@@ -144,12 +148,17 @@ public class NPCharacter : MonoBehaviour
         //GameObject closestBall = null;
         //Loop through list of AllBalls and update Eligible Balls
 
-        foreach (var p in AllBalls)
+        foreach (var p in daSingleton.AllBalls) // change back to just AllBalls when Nicole's code is up
         {
+          
+         
             if ((p.layer == redBallLayer && this.gameObject.layer == redPlayerLayer) || (p.layer == blueBallLayer && this.gameObject.layer == bluePlayerLayer))
             {
+                
                 if (!EligibleBalls.Contains(p))
-                { EligibleBalls.Add(p); }
+                { EligibleBalls.Add(p);
+                }
+
             }
             else
             {
@@ -157,23 +166,35 @@ public class NPCharacter : MonoBehaviour
                 { EligibleBalls.Remove(p); }
             }
         }
-        // Find ball with lowest distance
-        foreach (var p in EligibleBalls)
-        {
-            float distance = (p.transform.position - this.transform.position).magnitude;
 
-            if (closestBall == null)
+
+        // Find ball with lowest distance
+        if (EligibleBalls.Count > 0)
+        {
+            foreach (var p in EligibleBalls)
             {
-                lowestDistance = distance;
-                closestBall = p;
+                float distance = (p.transform.position - this.transform.position).magnitude;
+
+                if (closestBall == null)
+                {
+                    lowestDistance = distance;
+                    closestBall = p;
+                }
+                else if (distance < lowestDistance)
+                {
+                    lowestDistance = distance;
+                    closestBall = p;
+                }
             }
-            else if (distance < lowestDistance)
-            {
-                lowestDistance = distance;
-                closestBall = p;
-            }
-        }
+            
+        } else { closestBall = null; }
         return closestBall;
+
+
+
+
+
+
 
     }
 
@@ -266,10 +287,10 @@ public class NPCharacter : MonoBehaviour
         set { this.rb = value; }
     }
 
-    public CharacterState MyCharState
+    public CharacterState MyACS
     {
-        get { return this.myCharState; }
-        set { this.myCharState = value; }
+        get { return this.myACS; }
+        set { this.myACS = value; }
     }
     public INPCState State
     {
