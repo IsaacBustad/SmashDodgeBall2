@@ -6,5 +6,8 @@ using UnityEngine;
 
 public class Bound : Element
 {
-    
+    void OnCollisionEnter(Collision collision)
+    {
+        app.controller.OnBallGroundHit(collision.gameObject);
+    }
 }

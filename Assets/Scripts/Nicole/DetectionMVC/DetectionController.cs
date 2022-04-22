@@ -6,5 +6,13 @@ using UnityEngine;
 
 public class DetectionController : Element
 {
-    
+    BallSpawner ballSpawner;
+    public void OnBallGroundHit(GameObject gameObject)
+    {
+        if (gameObject.tag == "ball")
+        {
+            Destroy(gameObject);
+            ballSpawner.RemoveBallList(gameObject);
+        }
+    }
 }

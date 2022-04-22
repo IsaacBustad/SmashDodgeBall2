@@ -4,14 +4,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DetectionApp : MonoBehaviour
+public class Element : MonoBehaviour
 {
-    DetectionModel model;
-    DetectionView view;
-    DetectionController controller;
+    public DetectionApp app
+    {
+        get
+        {
+            return GameObject.FindObjectOfType<DetectionApp>();
+        }
+    }
 }
 
-public class Element : DetectionApp
+public class DetectionApp : MonoBehaviour
 {
-    Bound bound;
+    public DetectionModel model;
+    public DetectionView view;
+    public DetectionController controller;
 }
+
+

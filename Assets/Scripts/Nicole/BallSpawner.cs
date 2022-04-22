@@ -19,11 +19,10 @@ public class BallSpawner : MonoBehaviour
 
     //Singleton
     List<GameObject> ballList = new List<GameObject>(); //that's in the game
-    //BallSingleton BallSingleton;
+    Singleton singleton;
 
     //Class Array
-    public BallFactory[] ballTypeList; //array
-    //public List<BallFactory> ballTypeList; //list
+    public BallFactory[] ballTypeList;
 
 
     void Start()
@@ -52,13 +51,13 @@ public class BallSpawner : MonoBehaviour
     public void AddBallList(GameObject ball)
     {
         ballList.Add(ball);
-        // BallSingleton.BallUpdated(ballList);
+        singleton.BallUpdated(ballList);
     }
 
     public void RemoveBallList(GameObject ball)
     {
         ballList.Remove(ball);
-        // BallSingleton.BallUpdated(ballList);
+        singleton.BallUpdated(ballList);
     }
 
 
