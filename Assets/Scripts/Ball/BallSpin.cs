@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallSpin : MonoBehaviour
+public class BallSpin
 {
 
     public void SpinBall(float speed, GameObject _gameObject)

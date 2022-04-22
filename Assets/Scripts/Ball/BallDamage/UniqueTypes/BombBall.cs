@@ -10,7 +10,7 @@ public class BombBall : Ball, IEffects
     private bool hasPlayed = false;
 
     public AudioClip bombExplosion;
-    public bool hasExploded = false;
+    private bool hasExploded = false;
 
     private BallSpin ballSpin;
 
@@ -25,7 +25,7 @@ public class BombBall : Ball, IEffects
         ballEffect();
     }
 
-    // Strategy pattern
+    // When player grabs ball
     public void ballEffect()
     {
         // Spin ball
@@ -36,21 +36,6 @@ public class BombBall : Ball, IEffects
             // Spin noise effect
             AudioSource.PlayClipAtPoint(bombStartAudio, gameObject.transform.position, 3);
             hasPlayed = true;
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "NPC")
-        {
-            // Explosion sound effect
-            if (hasExploded == false)
-            {
-                // Spin noise effect
-                AudioSource.PlayClipAtPoint(bombExplosion, gameObject.transform.position, 3);
-                hasExploded = true;
-            }
-
         }
     }
 }
