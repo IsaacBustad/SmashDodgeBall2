@@ -13,8 +13,6 @@ public class BallDealDamage : MonoBehaviour
     private LayerMask myBallLayer;
 
     [SerializeField] private BallDamageEffect myDamageEffect;
-
-    public bool IsArmed() { return isArmed; }
     
     public LayerMask MyBallLayer
     {
