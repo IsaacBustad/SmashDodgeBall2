@@ -19,16 +19,21 @@ public class WheelBall : Ball, IEffects
         ballSpin = new BallSpin();
     }
 
+    void Update()
+    {
+        //ballEffect();
+    }
+
     // Strategy pattern
     public void ballEffect()
     {
-         if (hasPlayed == false)
+        // Spin ball
+        ballSpin.SpinBall(rotationSpeed, gameObject);
+
+        if (hasPlayed == false)
          {
             // Spin noise effect
             AudioSource.PlayClipAtPoint(audio, gameObject.transform.position, 3);
-
-            // Spin ball
-            ballSpin.SpinBall(rotationSpeed);
             hasPlayed = true;
         }
     }
