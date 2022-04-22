@@ -192,4 +192,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cc0f598f903d7b43b9f517fe006788b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageElement: {fileID: 4718716681494158821}
+  damageDecorator: {fileID: 0}
+  location: {x: 0, y: 0, z: 0}
+  ballLayer: 0
+  rotationSpeed: 50
   audio: {fileID: 8300000, guid: 11ca41620738f9047b92bda986e89b43, type: 3}
+--- !u!114 &4718716681494158821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4685815095215854714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee80318f31b470449954de5c51d92cd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

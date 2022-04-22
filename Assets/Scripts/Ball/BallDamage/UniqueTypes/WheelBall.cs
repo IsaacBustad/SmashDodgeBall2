@@ -35,6 +35,6 @@ public class WheelBall : Ball, IEffects
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+
     }
 }

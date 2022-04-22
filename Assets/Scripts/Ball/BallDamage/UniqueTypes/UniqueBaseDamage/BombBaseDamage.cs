@@ -6,11 +6,11 @@ public class BombBaseDamage : BallDamageElement
 {
     public override float DamageNumber()
     {
-        return 2f;
+        return 100f;
     }
 
     public override float KnockbackNumber()
     {
-        return 1f;
+        return 100f;
     }
 }

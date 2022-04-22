@@ -14,7 +14,7 @@ public class RedDodgeBall : Ball, IEffects
     // Start is called before the first frame update
     void Start()
     {
-        damageElement = new DodgeBallBaseDamage();
+        damageElement = new BallBaseDamage();
         ballSpin = new BallSpin();
     }
 
