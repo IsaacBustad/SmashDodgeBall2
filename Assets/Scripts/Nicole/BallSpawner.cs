@@ -43,6 +43,7 @@ public class BallSpawner : MonoBehaviour
             int listNum = Random.Range(0, 5); //for balltypelist
             int locationNum = Random.Range(0, locations.Length);
             GameObject newBall = ballTypeList[listNum].SpawnBall(locations[locationNum]);
+            AddBallList(newBall);
         }
 
     }
