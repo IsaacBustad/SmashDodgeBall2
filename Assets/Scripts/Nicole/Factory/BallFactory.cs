@@ -8,11 +8,9 @@ using UnityEngine;
 public class BallFactory : ScriptableObject
 {
     [SerializeField] private GameObject ballType;
-    BallSpawner ballSpawner;
     public GameObject SpawnBall(Vector3 location)
     {
         GameObject newBall = Instantiate(ballType, location, Quaternion.identity);
-        ballSpawner.AddBallList(newBall);
         newBall.tag = "Ball";
         return newBall;
     }
