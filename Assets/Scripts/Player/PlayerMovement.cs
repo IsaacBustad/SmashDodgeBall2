@@ -175,21 +175,21 @@ public class PlayerMovement : MonoBehaviour
         {
             
             
-            rb.AddForce(movDir * 50, ForceMode.Force);
+            rb.AddForce(movDir * 100, ForceMode.Force);
         }
 
       
         else
         {
             myCharState.IsIdle();
-            rb.AddForce(movDir * 50 * airMult, ForceMode.Force);
+            rb.AddForce(movDir * 100 * airMult, ForceMode.Force);
         }
     }
 
     private void CheckWalking()
     {
         // do not change states if in a moving state
-        if (myCharState.CurMoveState() != "d" && myCharState.CurMoveState() != "r")
+        if (myCharState.CurMoveState() == "i")//!= "d" && myCharState.CurMoveState() != "r"
         {
             //Debug.Log("meth");
             if (fNb > 0.1f || fNb < -0.1f)
@@ -314,7 +314,7 @@ public class PlayerMovement : MonoBehaviour
         canDash = false;
         yield return waitDashDur;
         StartCoroutine(DashCool());
-        myCharState.IsIdle();
+        myCharState.IsRun();
     }
 
 
