@@ -26,6 +26,6 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        DamageMeterText.text = charHealth.Health.ToString() + "%";
+        DamageMeterText.text = charHealth.Health.ToString() + "%\nPlayer" ;
     }
 }
