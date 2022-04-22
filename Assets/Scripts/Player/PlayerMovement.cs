@@ -52,9 +52,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform grdTfPt;
 
 
-    private bool isGrounded = false;
-
-
     // hold input
     private float fNb;
     private float rNl;
@@ -99,16 +96,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (myCharState.CurMoveState() != "h")
         {
-            //Debug.Log(myCharState.CurMoveState());
-            PerGrndChk();
+            //Debug.Log(myCharState.CurMoveState());            
             GetInput();
 
             if (myCharState.CurMoveState() != "t")
             {
                 CheckIdle();
                 Dash();
-                Sprint();
-                SpeedLimiter();
+                Sprint();                
                 CheckWalking();
             }
             //CheckWalking();
@@ -116,29 +111,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-
-
-    private void PerGrndChk()
-    {
         
-        isGrounded = Physics.Raycast(grdTfPt.position, Vector3.down,
-                                     playerHeight * 0.5f + heightBuffer,
-                                     whatIsGround);
-        
-        
-        if (isGrounded == true)
-        {
-            myCharState.IsGrounded();
-            rb.drag = groundDrag;
-        }
-        else
-        {
-            myCharState.IsAir();
-            rb.drag = 0f;
-        }
-    }
-
-    
     private void FixedUpdate()
     {
         if (myCharState.CurMoveState() != "h")
@@ -162,7 +135,7 @@ public class PlayerMovement : MonoBehaviour
 
         ThrowInput();
 
-        if (Input.GetKey(jumpKey) && readyToJump && isGrounded && myCharState.CurMoveState() != "t") 
+        if (Input.GetKey(jumpKey) && readyToJump && myCharState.GetGroundCheck() && myCharState.CurMoveState() != "t") 
         {            
             Jump();
 
@@ -202,21 +175,21 @@ public class PlayerMovement : MonoBehaviour
         {
             
             
-            rb.AddForce(movDir * 50, ForceMode.Force);
+            rb.AddForce(movDir * 100, ForceMode.Force);
         }
 
       
         else
         {
             myCharState.IsIdle();
-            rb.AddForce(movDir * 50 * airMult, ForceMode.Force);
+            rb.AddForce(movDir * 100 * airMult, ForceMode.Force);
         }
     }
 
     private void CheckWalking()
     {
         // do not change states if in a moving state
-        if (myCharState.CurMoveState() != "d" && myCharState.CurMoveState() != "r")
+        if (myCharState.CurMoveState() == "i")//!= "d" && myCharState.CurMoveState() != "r"
         {
             //Debug.Log("meth");
             if (fNb > 0.1f || fNb < -0.1f)
@@ -242,19 +215,7 @@ public class PlayerMovement : MonoBehaviour
        
     }
 
-    private void SpeedLimiter()
-    {
-        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-        
-        if(flatVel.magnitude > myCharState.GetMoveSpeed())
-        {
-            Vector3 limitedVel = flatVel.normalized * myCharState.GetMoveSpeed();
-            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
-        }
-    }
-
-
-
+    
     private void Jump()
     {
         myCharState.IsIdle();
@@ -308,30 +269,29 @@ public class PlayerMovement : MonoBehaviour
 
     private void ThrowInput()
     {
-        if (myThrower.hasBall == true)
+        
+        if (Input.GetKeyDown(throwKey))
         {
-            if (Input.GetKeyDown(throwKey))
-            {
                 
-                myThrower.startThrow = true;
-                //myCharState.IsThrow();
-            }
+            myThrower.startThrow = true;
+            //myCharState.IsThrow();
+        }
 
-            else if (Input.GetKeyUp(throwKey))
-            {
-                //Debug.Log("up");
-                //myAnim.SetBool("IsThrow", true);
-                myThrower.CallThrow(myCharState);
+        else if (Input.GetKeyUp(throwKey))
+        {
+            //Debug.Log("up");
+            //myAnim.SetBool("IsThrow", true);
+            myThrower.CallThrow(myCharState);
                 
                 
-            }
+        }
 
-            else if (Input.GetKey(throwKey) && myThrower.startThrow == true)
-            {
-                //Debug.Log("still");
-                myThrower.WindUp();
-            }
-        }        
+        else if (Input.GetKey(throwKey) && myThrower.startThrow == true)
+        {
+            //Debug.Log("still");
+            myThrower.WindUp();
+        }
+               
     }
 
 
@@ -354,7 +314,7 @@ public class PlayerMovement : MonoBehaviour
         canDash = false;
         yield return waitDashDur;
         StartCoroutine(DashCool());
-        myCharState.IsIdle();
+        myCharState.IsRun();
     }
 
 

@@ -99,49 +99,42 @@ private void Update()
 
     public void ThrowBall(CharacterState aCS, Transform targ )
     {
-        
-        
+        BallDealDamage aBallDam = ballOBJ.GetComponent<BallDealDamage>();
+        Rigidbody aBallRb = ballOBJ.GetComponent<Rigidbody>();
+
         aCS.IsThrow();
         ballOBJ.GetComponent<Ball>().damageElement = MultWrapper(ballOBJ.GetComponent<Ball>().damageElement);        
 
         hasBall = false;
+        aBallRb.velocity = Vector3.zero;
         startThrow = false;
         ballOBJ.transform.LookAt(targ);
 
         ballOBJ.GetComponent<BallDealDamage>().IsArmed = true;
-        ballOBJ.GetComponent<Rigidbody>().AddForce(ballOBJ.transform.forward * powMult, ForceMode.Impulse);
-            
-        /*powMult = Mathf.Clamp(powMult, 0f, powMultMax);
+           
+        
         ballOBJ.GetComponent<Ball>().damageElement = MultWrapper(ballOBJ.GetComponent<Ball>().damageElement);
 
-        hasBall = false;
-        startThrow = false;
-        ballOBJ.transform.LookAt(throwToward);
-
-        // prep ball to throw
         
-        aBallRb.useGravity = false;
-        aBallRb.velocity = Vector3.zero;
-        aBallDam.MaxVel = powMult * basePow;
-        aBallDam.IsArmed = true;
-        */
         
         ballOBJ = null;
     }
 
     public void ThrowBall(Transform targ)
     {
-
+        BallDealDamage aBallDam = ballOBJ.GetComponent<BallDealDamage>();
+        Rigidbody aBallRb = ballOBJ.GetComponent<Rigidbody>();
 
         //aCS.IsThrow();
         ballOBJ.GetComponent<Ball>().damageElement = MultWrapper(ballOBJ.GetComponent<Ball>().damageElement);
         
 
         hasBall = false;
+        aBallRb.velocity = Vector3.zero;
         startThrow = false;
         ballOBJ.transform.LookAt(targ);
 
-        ballOBJ.GetComponent<Rigidbody>().AddForce(ballOBJ.transform.forward * powMult, ForceMode.Impulse);
+        //ballOBJ.GetComponent<Rigidbody>().AddForce(ballOBJ.transform.forward * powMult, ForceMode.Impulse);
 
         /*powMult = Mathf.Clamp(powMult, 0f, powMultMax);
         ballOBJ.GetComponent<Ball>().damageElement = MultWrapper(ballOBJ.GetComponent<Ball>().damageElement);

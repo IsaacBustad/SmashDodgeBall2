@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1251399234414325628}
   - component: {fileID: 4578912885877983514}
   - component: {fileID: 948338685081169124}
+  - component: {fileID: 5306305428812584608}
   m_Layer: 0
   m_Name: BombBall
   m_TagString: Untagged
@@ -95,7 +96,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aabfde6cbb777249b1052b38c2cbe71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageElement: {fileID: 5306305428812584608}
+  damageDecorator: {fileID: 0}
+  location: {x: 0, y: 0, z: 0}
+  ballLayer: 0
+  rotationSpeed: 50
   audio: {fileID: 8300000, guid: c685ee9a630a65e4aba54cb17265d272, type: 3}
+--- !u!114 &5306305428812584608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4082147509320963148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 341c267f54007584ebcb43b93c2fd6dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6260854818193670686
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,5 +354,5 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 14
+  m_Constraints: 0
   m_CollisionDetection: 0

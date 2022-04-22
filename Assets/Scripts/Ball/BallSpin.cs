@@ -5,8 +5,9 @@ using UnityEngine;
 public class BallSpin : MonoBehaviour
 {
 
-    public void SpinBall(float speed)
+    public void SpinBall(float speed, GameObject _gameObject)
     {
-        transform.Rotate(0, 0, speed * Time.deltaTime);
+        Debug.Log("Spin");
+        _gameObject.transform.Rotate(0, 0, speed * Time.deltaTime);
     }
 }

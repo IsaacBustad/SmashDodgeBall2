@@ -1,3 +1,7 @@
+// creator Isaac Bustad
+// created 4/22/2022
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +25,7 @@ public class CharHealth : MonoBehaviour
 
     [Header("Do not edit")]
     [SerializeField] public float health = 0f;
+    public CharElimEffect efGO;
 
     //read only
     public float Health
@@ -54,6 +59,7 @@ public class CharHealth : MonoBehaviour
         health += dam;
         myThrower.hasBall = false;
         KnockBack(knock, collPt);
+        efGO.PlayEffect(playerTf);
         //KnockBack(knock, aTf);        
     }
 
