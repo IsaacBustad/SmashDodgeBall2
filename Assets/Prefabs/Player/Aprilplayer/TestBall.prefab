@@ -92,7 +92,6 @@ GameObject:
   - component: {fileID: 6606088713726711273}
   - component: {fileID: 3349968114132330610}
   - component: {fileID: 426876322089458132}
-  - component: {fileID: 2408584651817969149}
   - component: {fileID: 6011122133160684803}
   - component: {fileID: 6346079400444658602}
   - component: {fileID: 3276496937550719735}
@@ -148,24 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74ec13d4ad85d464b8a882109facb183, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageElement: {fileID: 0}
-  damageDecorator: {fileID: 0}
   location: {x: 0, y: 0, z: 0}
-  ballLayer:
-    serializedVersion: 2
-    m_Bits: 0
---- !u!114 &2408584651817969149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7923753105411483642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54f58f45d85198849a9dbe71046f385e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  ballLayer: 0
 --- !u!114 &6011122133160684803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,3 +215,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f20aff89d7b3204aae8cd2e5f870a11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myDamageEffect: {fileID: 11400000, guid: 8feb2367d25b8fa4d9a7064ce44e1583, type: 2}

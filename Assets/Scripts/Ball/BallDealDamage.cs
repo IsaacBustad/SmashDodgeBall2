@@ -30,7 +30,8 @@ public class BallDealDamage : MonoBehaviour
 
     public bool IsArmed
     {   
-        set { isArmed = true; }
+        get { return isArmed; }
+        set { isArmed = true; /*myBall.ballEffect*/}
     }
     private void Awake()
     {
@@ -62,11 +63,7 @@ public class BallDealDamage : MonoBehaviour
     {
         if (isArmed == true)
         {
-            /*Vector3 mvPT = tf.position + new Vector3(0,0,1) * Time.deltaTime * mySpeedMult;
-            rb.MovePosition( mvPT * mySpeedMult);
-            Debug.Log(mvPT);*/
-
-            rb.AddForce(gameObject.transform.forward * 50, ForceMode.Force);
+            rb.AddForce(gameObject.transform.forward * 100, ForceMode.Force);
             LimitBallVell();
         }
         
@@ -93,13 +90,20 @@ public class BallDealDamage : MonoBehaviour
             if (EnemyTeam(collision))
             {
                 Debug.Log("health");
-                charHealth.TakeDammage(myBall.damageElement.DamageNumber(), myBall.damageElement.KnockbackNumber(), this.gameObject.transform);
+                charHealth.TakeDammage(myBall.damageElement.DamageNumber(), myBall.damageElement.KnockbackNumber(), tf);
+                
                 Destroy(this.gameObject, 1f);
+                DesEffect();
             }
         }
+        DissarmBall();
+    }
+
+    private void DissarmBall()
+    {
         isArmed = false;
         myBall.ResetBaseDamage();
-        gameObject.GetComponent<Rigidbody>().useGravity = true;
+        rb.useGravity = true;
     }
 
     private bool EnemyTeam(Collision collision)
@@ -107,5 +111,10 @@ public class BallDealDamage : MonoBehaviour
         if (myBall.gameObject.layer == 7 && collision.gameObject.layer == 10) { return true; } 
         else if (myBall.gameObject.layer == 8 && collision.gameObject.layer == 9) { return true; } 
         else { return false; }
+    }
+
+    private void DesEffect()
+    {
+        myDamageEffect.PlayEffect(tf);
     }
 }

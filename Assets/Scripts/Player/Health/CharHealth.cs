@@ -8,10 +8,6 @@ using UnityEngine;
 
 public class CharHealth : MonoBehaviour
 {
-    // test key
-    private KeyCode tk = KeyCode.L;
-
-
     private CharacterState myCS;
     public float healthDamMult = 0.000000000000000000005f;
     private Vector3 vz = new Vector3(0f,0f,0f);
@@ -21,7 +17,6 @@ public class CharHealth : MonoBehaviour
     [SerializeField] private Thrower myThrower;
     private Transform playerTf;
     private Rigidbody rb;
-    //public Transform aTf;
 
     [Header("Do not edit")]
     [SerializeField] public float health = 0f;
@@ -41,17 +36,7 @@ public class CharHealth : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody>();
     }
 
-    // test meth
-    /*private void Update()
-    {
-        if (Input.GetKeyDown(tk))
-        {
-            Vector3 tv3 = new Vector3(0f, 0f,0f);
-            TakeDammage(5f,10f, tv3);
-        }
-    }*/
-
-    // methods
+    
     public void TakeDammage(float dam, float knock, Transform collPt)
     {        
         myCS.IsHit();
@@ -74,7 +59,7 @@ public class CharHealth : MonoBehaviour
         rb.AddForce(new Vector3(direction.x , 1, direction.z).normalized  * (health * knock), ForceMode.Impulse);
         StopAllCoroutines();
         StartCoroutine(WaitToRecover());
-        gameObject.GetComponent<PlayerBlind>().BlindMe();
+        //gameObject.GetComponent<PlayerBlind>().BlindMe();
     }
 
     // coroutines

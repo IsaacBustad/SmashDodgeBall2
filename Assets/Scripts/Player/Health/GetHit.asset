@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c1cf288e893c7354bb2239d60674af4f, type: 3}
-  m_Name: CharElim
+  m_Name: GetHit
   m_EditorClassIdentifier: 
-  effect: {fileID: 2586579525860178536, guid: fe041f54b3ad5fa48a5f182bd0844d1d, type: 3}
+  effect: {fileID: 5849950693692970601, guid: 87b11faeb82f55e4d8fcf3f1162d55fb, type: 3}
