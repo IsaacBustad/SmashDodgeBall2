@@ -34,5 +34,11 @@ public class OutS : MonoBehaviour, INPCState
     {
         // Out - can't move
     }
+
+    public override string ToString()
+    {
+        return "Out State";
+    }
+
 }
 

@@ -96,7 +96,7 @@ public class NPCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        Debug.Log("AllBalls: " + AllBalls.Count);
         if (AllBalls.Count > 0)
         {
             GoGetBall();
@@ -104,7 +104,8 @@ public class NPCharacter : MonoBehaviour
 
         ThrowBall();
 
-
+        /*Debug.Log(this.name + " move state: " + MyACS.CurMoveState());
+        Debug.Log(this.name + " NPC state: " + this.state.ToString()) ;*/
     }
 
     public void GoGetBall()

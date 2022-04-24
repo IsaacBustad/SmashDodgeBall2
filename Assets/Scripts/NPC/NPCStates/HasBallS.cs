@@ -28,6 +28,8 @@ public class HasBallS : MonoBehaviour, INPCState
     {
         NPC = gameObject.GetComponent<NPCharacter>();
     }
+
+
     public void GoGetBall()
     {
         // Already have a ball
@@ -58,8 +60,10 @@ public class HasBallS : MonoBehaviour, INPCState
     bool throwing = true;
     public void ThrowBall()
     {
+
+        MoveToLine();
         // Wait until you're at the line
-        if (MoveToLine())
+        if (this.transform.position.z < 2)
         {
             //throwing = false;
             if (throwing == true)
@@ -70,8 +74,9 @@ public class HasBallS : MonoBehaviour, INPCState
 
                 // Throw ball at them
                 NPC.myThrower.startThrow = true;
+                //this.transform.LookAt(closestEnemy.transform);
+
                 NPC.myThrower.ThrowBall(NPC.MyACS, closestEnemy.transform);
-                NPC.State = NPC.NoBallState;
                 throwing = false;
             }
     
@@ -80,7 +85,7 @@ public class HasBallS : MonoBehaviour, INPCState
             if (NPC.MyACS.CurMoveState() == "i")
             {
                 NPC.State = NPC.NoBallState;
-                throwing = true;
+                throwing = false;
             }
             
         }
@@ -94,6 +99,7 @@ public class HasBallS : MonoBehaviour, INPCState
     {
         //Set animation state
         NPC.MyACS.IsRun();
+        this.transform.LookAt(aPoint);
 
         
         if (gameObject.layer == redPlayerLayer && aPoint.z >= 0)
@@ -127,9 +133,9 @@ public class HasBallS : MonoBehaviour, INPCState
         }
 
     }
-    public bool MoveToLine()
+    public void MoveToLine()
     {
-        Debug.Log("We're in MoveToLine");
+        //Debug.Log("We're in MoveToLine");
         // Assume divider line is centered on y-axis
         borderLinePoint.x = NPC.transform.position.x;
         borderLinePoint.y = NPC.transform.position.y;
@@ -137,12 +143,11 @@ public class HasBallS : MonoBehaviour, INPCState
         
 
         float distanceToPoint = (borderLinePoint - this.transform.position).magnitude;
-        if (distanceToPoint <= 3.0f)
+        if (distanceToPoint >= 3.0f)
         {
-            return true;
+            MoveTo(borderLinePoint);
         }
-        else MoveTo(borderLinePoint); 
-        return false;
+        
 
     }
 

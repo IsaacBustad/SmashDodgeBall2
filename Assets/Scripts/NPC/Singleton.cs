@@ -48,7 +48,9 @@ public sealed class Singleton : ISubject
     }
     public void BallUpdated(List<GameObject> newBalls)
     {
+
         this.AllBalls = newBalls;
+        Debug.Log("NewBalls: " + newBalls.Count);
         Notify(); 
     }
     public void Notify()
@@ -57,6 +59,7 @@ public sealed class Singleton : ISubject
         {
             o.updateObserver(AllBalls, AllPlayers);
         }
+
     }
 
     public override string ToString()

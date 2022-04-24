@@ -99,6 +99,7 @@ private void Update()
 
     public void ThrowBall(CharacterState aCS, Transform targ )
     {
+
         BallDealDamage aBallDam = ballOBJ.GetComponent<BallDealDamage>();
         Rigidbody aBallRb = ballOBJ.GetComponent<Rigidbody>();
 
@@ -113,11 +114,12 @@ private void Update()
         ballOBJ.GetComponent<BallDealDamage>().IsArmed = true;
            
         
-        ballOBJ.GetComponent<Ball>().damageElement = MultWrapper(ballOBJ.GetComponent<Ball>().damageElement);
+        //ballOBJ.GetComponent<Ball>().damageElement = MultWrapper(ballOBJ.GetComponent<Ball>().damageElement);
 
         
         
         ballOBJ = null;
+        StartCoroutine(WaitThrowDur(aCS));
     }
 
     public void ThrowBall(Transform targ)
