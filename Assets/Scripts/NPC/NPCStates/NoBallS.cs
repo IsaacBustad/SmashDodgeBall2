@@ -26,7 +26,8 @@ public class NoBallS : MonoBehaviour, INPCState
 
     public void GoGetBall()
     {   //Find the closest ball. Move to it, and pick it up.
-       
+        
+
         closestBall = NPC.FindClosestBall();
         
         if (closestBall != null)

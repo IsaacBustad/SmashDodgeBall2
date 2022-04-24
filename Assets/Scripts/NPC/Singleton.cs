@@ -37,35 +37,39 @@ public sealed class Singleton : ISubject
     {
         this.observers.Add(c);
         this.AllPlayers.Add(c.gameObject);
-
-
        
         Notify();
     }
+
+
     public void RemoveObserver(CharacterBroadcast o)
     {
         this.observers.Remove(o);
     }
+
+
     public void BallUpdated(List<GameObject> newBalls)
     {
-
         this.AllBalls = newBalls;
         Debug.Log("NewBalls: " + newBalls.Count);
         Notify(); 
     }
+
+
     public void Notify()
     {
         foreach (var o in observers)
         {
             o.updateObserver(AllBalls, AllPlayers);
         }
-
     }
+
 
     public override string ToString()
     {
         return "Singleton is Alive!!!";
     }
+
 
     public List<GameObject> AllBalls
     {

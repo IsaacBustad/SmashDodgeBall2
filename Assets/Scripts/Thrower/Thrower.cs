@@ -107,17 +107,17 @@ private void Update()
         ballOBJ.GetComponent<Ball>().damageElement = MultWrapper(ballOBJ.GetComponent<Ball>().damageElement);        
 
         hasBall = false;
-        aBallRb.velocity = Vector3.zero;
         startThrow = false;
         ballOBJ.transform.LookAt(targ);
 
-        ballOBJ.GetComponent<BallDealDamage>().IsArmed = true;
-           
-        
+        aBallRb.useGravity = false;
+        aBallRb.velocity = Vector3.zero;
+        aBallDam.MaxVel = powMult * basePow;
+        aBallDam.IsArmed = true;
+
+
         //ballOBJ.GetComponent<Ball>().damageElement = MultWrapper(ballOBJ.GetComponent<Ball>().damageElement);
 
-        
-        
         ballOBJ = null;
         StartCoroutine(WaitThrowDur(aCS));
     }

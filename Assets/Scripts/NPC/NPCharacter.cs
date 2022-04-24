@@ -104,8 +104,8 @@ public class NPCharacter : MonoBehaviour
 
         ThrowBall();
 
-        /*Debug.Log(this.name + " move state: " + MyACS.CurMoveState());
-        Debug.Log(this.name + " NPC state: " + this.state.ToString()) ;*/
+        Debug.Log(this.name + " move state: " + MyACS.CurMoveState());
+        Debug.Log(this.name + " NPC state: " + this.state.ToString());
     }
 
     public void GoGetBall()
@@ -140,26 +140,18 @@ public class NPCharacter : MonoBehaviour
     //
     //
 
-    public void updateObserver(List<GameObject> aListOfBalls)
-    {
-        AllBalls = aListOfBalls;
-    }
     public GameObject FindClosestBall()
     {
-        //GameObject closestBall = null;
+
         //Loop through list of AllBalls and update Eligible Balls
 
-        foreach (var p in daSingleton.AllBalls) // change back to just AllBalls when Nicole's code is up
+        foreach (var p in daSingleton.AllBalls) 
         {
-          
-         
             if ((p.layer == redBallLayer && this.gameObject.layer == redPlayerLayer) || (p.layer == blueBallLayer && this.gameObject.layer == bluePlayerLayer))
-            {
-                
+            {         
                 if (!EligibleBalls.Contains(p))
                 { EligibleBalls.Add(p);
                 }
-
             }
             else
             {
@@ -168,10 +160,10 @@ public class NPCharacter : MonoBehaviour
             }
         }
 
-
         // Find ball with lowest distance
         if (EligibleBalls.Count > 0)
         {
+            closestBall = null;
             foreach (var p in EligibleBalls)
             {
                 float distance = (p.transform.position - this.transform.position).magnitude;
@@ -189,14 +181,9 @@ public class NPCharacter : MonoBehaviour
             }
             
         } else { closestBall = null; }
+        Debug.Log("AllBalls Count: " + AllBalls.Count() + "\n  | Eligible Balls: " + EligibleBalls.Count() + "\n  | Closest Ball: " + closestBall.name);
+
         return closestBall;
-
-
-
-
-
-
-
     }
 
     public GameObject FindClosestEnemy()
