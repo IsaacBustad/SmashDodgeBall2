@@ -99,7 +99,6 @@ MonoBehaviour:
   ballLayer: 0
   rotationSpeed: 50
   bombStartAudio: {fileID: 8300000, guid: c685ee9a630a65e4aba54cb17265d272, type: 3}
-  bombExplosion: {fileID: 8300000, guid: 76adb6e1ca4e2b54199ad874ef0d69f0, type: 3}
 --- !u!1 &6260854818193670686
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,6 +356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f20aff89d7b3204aae8cd2e5f870a11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myBall: {fileID: 0}
   myDamageEffect: {fileID: 11400000, guid: 8feb2367d25b8fa4d9a7064ce44e1583, type: 2}
 --- !u!114 &-1202817214927769886
 MonoBehaviour:

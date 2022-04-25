@@ -83,7 +83,7 @@ private void Update()
         powMult = Mathf.Clamp(powMult, 0f, powMultMax);
         //ballOBJ.GetComponent<Ball>().damageElement = MultWrapper(ballOBJ.GetComponent<Ball>().damageElement);
         
-        aBallDam.myBall.damageElement = MultWrapper(ballOBJ.GetComponent<Ball>().damageElement);
+        aBallDam.myBall.damageElement  = MultWrapper(aBallDam.myBall.damageElement);
 
         hasBall = false;
         startThrow = false;
@@ -109,7 +109,7 @@ private void Update()
         Rigidbody aBallRb = ballOBJ.GetComponent<Rigidbody>();
 
         aCS.IsThrow();
-        ballOBJ.GetComponent<Ball>().damageElement = MultWrapper(ballOBJ.GetComponent<Ball>().damageElement);        
+        aBallDam.myBall.damageElement = MultWrapper(aBallDam.myBall.damageElement);
 
         hasBall = false;
         startThrow = false;
@@ -133,8 +133,8 @@ private void Update()
         Rigidbody aBallRb = ballOBJ.GetComponent<Rigidbody>();
 
         //aCS.IsThrow();
-        ballOBJ.GetComponent<Ball>().damageElement = MultWrapper(ballOBJ.GetComponent<Ball>().damageElement);
-        
+        aBallDam.myBall.damageElement = MultWrapper(aBallDam.myBall.damageElement);
+
 
         hasBall = false;
         aBallRb.velocity = Vector3.zero;

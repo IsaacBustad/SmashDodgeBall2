@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4008830575904185648}
   - component: {fileID: 8947817922109679586}
   - component: {fileID: 175635090734139857}
+  - component: {fileID: 2231816989681065433}
   m_Layer: 0
   m_Name: WheelBall
   m_TagString: Untagged
@@ -81,6 +82,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2231816989681065433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683789807978880109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e74e0f468989b84783309ac8eb76e7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  location: {x: 0, y: 0, z: 0}
+  ballLayer: 0
+  rotationSpeed: 500
+  audio: {fileID: 0}
 --- !u!1 &7923753105411483642
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,7 +108,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6606088713726711273}
   - component: {fileID: 3349968114132330610}
-  - component: {fileID: 426876322089458132}
   - component: {fileID: 6011122133160684803}
   - component: {fileID: 6346079400444658602}
   - component: {fileID: 3276496937550719735}
@@ -135,20 +151,6 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &426876322089458132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7923753105411483642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74ec13d4ad85d464b8a882109facb183, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  location: {x: 0, y: 0, z: 0}
-  ballLayer: 0
 --- !u!114 &6011122133160684803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,5 +217,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f20aff89d7b3204aae8cd2e5f870a11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myBall: {fileID: 426876322089458132}
+  myBall: {fileID: 2231816989681065433}
   myDamageEffect: {fileID: 11400000, guid: 8feb2367d25b8fa4d9a7064ce44e1583, type: 2}

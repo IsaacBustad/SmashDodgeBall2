@@ -87,9 +87,10 @@ public class BallDealDamage : MonoBehaviour
 
         if (charHealth != null)
         {
-            if (EnemyTeam(collision))
+            Debug.Log("Health");
+            if (EnemyTeam(collision) == true)
             {
-                Debug.Log("health");
+                Debug.Log("dammage");
                 charHealth.TakeDammage(myBall.damageElement.DamageNumber(), myBall.damageElement.KnockbackNumber(), tf);
                 
                 Destroy(this.gameObject, 1f);
@@ -108,9 +109,10 @@ public class BallDealDamage : MonoBehaviour
 
     private bool EnemyTeam(Collision collision)
     {
-        if (myBall.gameObject.layer == 7 && collision.gameObject.layer == 10) { return true; } 
-        else if (myBall.gameObject.layer == 8 && collision.gameObject.layer == 9) { return true; } 
-        else { return false; }
+        Debug.Log("Called");
+        if (this.gameObject.layer == 7 && collision.gameObject.layer == 10) { return true; } 
+        else if (this.gameObject.layer == 8 && collision.gameObject.layer == 9) { return true; } 
+        else { Debug.Log("False"); return false; }
     }
 
     private void DesEffect()
