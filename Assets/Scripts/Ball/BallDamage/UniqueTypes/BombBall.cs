@@ -2,15 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BombBall : Ball, IEffects
+public class BombBall : Ball
 {
     public int rotationSpeed = 50;
 
     public AudioClip bombStartAudio;
     private bool hasPlayed = false;
-
-    public AudioClip bombExplosion;
-    private bool hasExploded = false;
 
     private BallSpin ballSpin;
 
@@ -26,7 +23,7 @@ public class BombBall : Ball, IEffects
     }
 
     // When player grabs ball
-    public void ballEffect()
+    public override void ballEffect()
     {
         // Spin ball
         ballSpin.SpinBall(rotationSpeed, gameObject);

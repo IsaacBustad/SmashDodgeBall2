@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ball : MonoBehaviour
+public abstract class Ball : MonoBehaviour
 {
     public BallDamageElement damageElement;
     public BallDamageDecorator damageDecorator = null;
@@ -23,6 +23,9 @@ public class Ball : MonoBehaviour
     {
         
     }
+
+    // Strategy Pattern
+    public abstract void ballEffect();
 
     // method that reset element back to base
     public void ResetBaseDamage()
