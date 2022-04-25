@@ -28,7 +28,7 @@ public class WheelBall : Ball
     public override void ballEffect()
     {
         // Spin ball
-        ballSpin.SpinBall(rotationSpeed, gameObject);
+        ballSpin.SpinBall(rotationSpeed);
 
         if (hasPlayed == false)
          {

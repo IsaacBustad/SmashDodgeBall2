@@ -27,17 +27,14 @@ public class SpikeBall : Ball
     public override void ballEffect()
     {
         // Spin ball
-        ballSpin.SpinBall(rotationSpeed, gameObject);
+        ballSpin.SpinBall(rotationSpeed);
 
         if (hasPlayed == false)
         {
-            if (hasPlayed == false)
-            {
-                // Spin noise effect
-                AudioSource.PlayClipAtPoint(audio, gameObject.transform.position, 3);
+            // Spin noise effect
+            AudioSource.PlayClipAtPoint(audio, gameObject.transform.position, 3);
 
-                hasPlayed = true;
-            }
+            hasPlayed = true;
         }
     }
 

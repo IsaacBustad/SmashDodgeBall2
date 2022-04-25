@@ -8,7 +8,7 @@ public class BallSpin : MonoBehaviour
     [SerializeField] private bool yAxis;
     [SerializeField] private bool zAxis;
 
-    public float spinSpeed; 
+    private float spinSpeed; 
 
     private BallDealDamage ballDealDamage;
 
@@ -22,23 +22,23 @@ public class BallSpin : MonoBehaviour
     {
         if (ballDealDamage.IsArmed)
         {
-            SpinBall(spinSpeed, gameObject);
+            SpinBall(spinSpeed);
         }
     }
 
-    public void SpinBall(float speed, GameObject _gameObject)
+    public void SpinBall(float speed)
     {
         if (xAxis)
         {
-            _gameObject.transform.Rotate(speed * Time.deltaTime, 0, 0);
+            transform.Rotate(speed * Time.deltaTime, 0, 0);
         }
         if (yAxis)
         {
-            _gameObject.transform.Rotate(0, speed * Time.deltaTime, 0);
+            transform.Rotate(0, speed * Time.deltaTime, 0);
         }
         if (zAxis)
         {
-            _gameObject.transform.Rotate(0, 0, speed * Time.deltaTime);
+            transform.Rotate(0, 0, speed * Time.deltaTime);
         }
     }
 }

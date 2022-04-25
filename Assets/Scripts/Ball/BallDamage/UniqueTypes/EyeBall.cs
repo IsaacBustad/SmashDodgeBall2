@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EyeBall : Ball
 {
+    public int rotationSpeed = 100;
+    private BallSpin ballSpin;
+
     public AudioClip audio;
     private bool hasPlayed = false;
 
@@ -11,15 +14,18 @@ public class EyeBall : Ball
     void Start()
     {
         damageElement = new EyeBaseDamage();
+        ballSpin = gameObject.GetComponent<BallSpin>();
     }
     void Update()
     {
-        //ballEffect();
+        ballEffect();
     }
 
     // Strategy pattern
     public override void ballEffect()
     {
+        // Spin ball
+        ballSpin.SpinBall(rotationSpeed);
 
         if (hasPlayed == false)
         {

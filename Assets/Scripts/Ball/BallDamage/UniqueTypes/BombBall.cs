@@ -5,28 +5,27 @@ using UnityEngine;
 public class BombBall : Ball
 {
     public int rotationSpeed = 50;
+    private BallSpin ballSpin;
 
     public AudioClip bombStartAudio;
     private bool hasPlayed = false;
-
-    private BallSpin ballSpin;
 
 
     void Start()
     {
         damageElement = new BombBaseDamage();
-        ballSpin = new BallSpin();
+        ballSpin = gameObject.GetComponent<BallSpin>();
     }
     void Update()
     {
-        ballEffect();
+        //ballEffect();
     }
 
     // When player grabs ball
     public override void ballEffect()
     {
         // Spin ball
-        ballSpin.SpinBall(rotationSpeed, gameObject);
+        ballSpin.SpinBall(rotationSpeed);
 
         if (hasPlayed == false)
         {
