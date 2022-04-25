@@ -14,9 +14,7 @@ public class CharacterBroadcast : MonoBehaviour, IObserver
 
     private void Awake()
     {
-        
         myNPC = this.gameObject.GetComponent<NPCharacter>();
-
     }
 
     // Start is called before the first frame update

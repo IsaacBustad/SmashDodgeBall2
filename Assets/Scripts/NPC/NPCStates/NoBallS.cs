@@ -26,12 +26,13 @@ public class NoBallS : MonoBehaviour, INPCState
 
     public void GoGetBall()
     {   //Find the closest ball. Move to it, and pick it up.
-       
+        
+
         closestBall = NPC.FindClosestBall();
         
         if (closestBall != null)
         {
-            Debug.Log("me: " + this.name + " closest ballxxxxxxx: " + closestBall.name);
+            //Debug.Log("me: " + this.name + " closest ballxxxxxxx: " + closestBall.name);
             MoveTo(closestBall.transform.position);
             PickUpBall(closestBall);
         }
@@ -60,6 +61,7 @@ public class NoBallS : MonoBehaviour, INPCState
     {
         //Set animation state
         NPC.MyACS.IsRun();
+        this.transform.LookAt(aPoint);
 
         if (gameObject.layer == redPlayerLayer && aPoint.z <= 0)
         {
