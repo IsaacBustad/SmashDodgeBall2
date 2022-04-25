@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3359409065557450498}
   - component: {fileID: 960034543464481728}
   - component: {fileID: 4477142456705541779}
+  - component: {fileID: -5899401346107958728}
   m_Layer: 0
   m_Name: EyeBall
   m_TagString: Untagged
@@ -113,6 +114,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-5899401346107958728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6771493447511519791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f20aff89d7b3204aae8cd2e5f870a11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myDamageEffect: {fileID: 11400000, guid: 8feb2367d25b8fa4d9a7064ce44e1583, type: 2}
 --- !u!1001 &476669194048621050
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -194,5 +208,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   location: {x: 0, y: 0, z: 0}
   ballLayer: 0
-  rotationSpeed: 50
   audio: {fileID: 8300000, guid: 11ca41620738f9047b92bda986e89b43, type: 3}

@@ -5,15 +5,15 @@ using UnityEngine;
 public class GetOut : MonoBehaviour
 {
     //singalton reff
-    [SerializeField] private GameObject topObjContatiner;
-    [SerializeField] private GameObject effect;
+    [SerializeField] protected GameObject topObjContatiner;
+    [SerializeField] protected CharElimEffect effect;
     // clip
 
-    public void RingOut()
+    public virtual void RingOut()
     {
-        GameObject anEfect = Instantiate(effect, this.gameObject.transform.position, transform.rotation);
-        Destroy(anEfect, 5);
-        // play clip
+        effect.PlayEffect(this.gameObject.transform);
+        
+        
         // remove from in play list
         topObjContatiner.SetActive(false);
     }

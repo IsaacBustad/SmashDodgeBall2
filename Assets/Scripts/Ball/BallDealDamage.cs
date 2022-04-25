@@ -37,7 +37,7 @@ public class BallDealDamage : MonoBehaviour
     {
         rb = gameObject.GetComponent<Rigidbody>();
         tf = gameObject.GetComponent<Transform>();
-        myBall = gameObject.GetComponent<Ball>();
+        myBall = gameObject.GetComponentInChildren<Ball>();  // GetComponent<Ball>();
         
     }
 

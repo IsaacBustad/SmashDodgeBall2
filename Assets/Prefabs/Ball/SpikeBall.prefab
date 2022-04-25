@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3198536392530867965}
   - component: {fileID: 1585774426302793538}
   - component: {fileID: -5338377082685363910}
+  - component: {fileID: 8355173267971402656}
   m_Layer: 0
   m_Name: SpikeBall
   m_TagString: Untagged
@@ -113,6 +114,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8355173267971402656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2576531435856768764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f20aff89d7b3204aae8cd2e5f870a11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myDamageEffect: {fileID: 11400000, guid: 8feb2367d25b8fa4d9a7064ce44e1583, type: 2}
 --- !u!1001 &3515801854772310091
 PrefabInstance:
   m_ObjectHideFlags: 0

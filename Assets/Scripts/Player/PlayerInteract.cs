@@ -53,16 +53,17 @@ public class PlayerInteract : MonoBehaviour
             if (canInteract == true)
             {
                 Debug.Log("can");
+                InvokeInteraction aII = aGO.GetComponent<InvokeInteraction>();
 
-                if (aGO.GetComponent<InvokeInteraction>() != null)
+                if (aII != null)
                 {
                     Debug.Log("comp");
 
-                    aGO.GetComponent<InvokeInteraction>().Execute(this.gameObject);
-                    thrower.ballOBJ = aGO;
+                    aII.Execute(this.gameObject);
+                    /*thrower.ballOBJ = aGO;
                     thrower.ballOBJ.layer = 7;
                     thrower.ballOBJ.GetComponent<Ball>().ballLayer = 7;
-                    thrower.hasBall = true;
+                    thrower.hasBall = true;*/
                     StartCoroutine(WaitToInteract());
                 }
             }    

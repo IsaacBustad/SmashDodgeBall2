@@ -10,11 +10,13 @@ public class BallServices : ServeCMD
 {
     public override void Service(GameObject aCli)
     {
-        Thrower cliThrower = aCli.GetComponent<Thrower>();
+        Thrower cliThrower = aCli.GetComponent<PlayerInteract>().thrower;
         if (cliThrower != null)
         {
             cliThrower.ballOBJ = this.gameObject;
-            this.gameObject.GetComponent<Ball>().ballLayer = cliThrower.ballLayer;
+            cliThrower.ballOBJ.layer = cliThrower.ballLayer;            
+            cliThrower.hasBall = true;
+            //this.gameObject.GetComponent<Ball>().ballLayer = cliThrower.ballLayer;
         }
     }
 }

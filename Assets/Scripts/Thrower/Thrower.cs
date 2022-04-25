@@ -63,10 +63,13 @@ private void Update()
     public void CallThrow(CharacterState aCS)
     {
         //aCS.myAnim.SetBool("IsThrow", true);
-        ThrowBall(aCS);
-        powMult = powMultBase;
-        startThrow = false;
-        hasBall = false;
+        if (ballOBJ != null)
+        {
+            ThrowBall(aCS);
+            powMult = powMultBase;
+            startThrow = false;
+            hasBall = false;
+        }
     }
 
     public void ThrowBall(CharacterState aCS)

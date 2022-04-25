@@ -100,7 +100,6 @@ MonoBehaviour:
   rotationSpeed: 50
   bombStartAudio: {fileID: 8300000, guid: c685ee9a630a65e4aba54cb17265d272, type: 3}
   bombExplosion: {fileID: 8300000, guid: 76adb6e1ca4e2b54199ad874ef0d69f0, type: 3}
-  bombExplosionEffect: {fileID: 11400000, guid: be558c88bfc746a45a21c8032f796a5f, type: 2}
 --- !u!1 &6260854818193670686
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,6 +274,7 @@ GameObject:
   - component: {fileID: 4432502059610438254}
   - component: {fileID: 948338685081169123}
   - component: {fileID: 948338685081169122}
+  - component: {fileID: -5795763176309863465}
   m_Layer: 0
   m_Name: BombBall
   m_TagString: Untagged
@@ -343,3 +343,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &-5795763176309863465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9081719841211643366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f20aff89d7b3204aae8cd2e5f870a11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myDamageEffect: {fileID: 11400000, guid: 8feb2367d25b8fa4d9a7064ce44e1583, type: 2}
