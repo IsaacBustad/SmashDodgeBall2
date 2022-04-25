@@ -81,7 +81,9 @@ private void Update()
         aCS.IsThrow();
         
         powMult = Mathf.Clamp(powMult, 0f, powMultMax);
-        ballOBJ.GetComponent<Ball>().damageElement = MultWrapper(ballOBJ.GetComponent<Ball>().damageElement);
+        //ballOBJ.GetComponent<Ball>().damageElement = MultWrapper(ballOBJ.GetComponent<Ball>().damageElement);
+        
+        aBallDam.myBall.damageElement = MultWrapper(ballOBJ.GetComponent<Ball>().damageElement);
 
         hasBall = false;
         startThrow = false;

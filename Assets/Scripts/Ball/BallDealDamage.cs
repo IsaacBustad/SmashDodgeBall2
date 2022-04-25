@@ -7,7 +7,7 @@ public class BallDealDamage : MonoBehaviour
     private bool isArmed = false;
     private Rigidbody rb;
     private Transform tf;
-    private Ball myBall;
+    public Ball myBall;
     private float mySpeedMult = 1f;
     private float maxVel = 1;
     private LayerMask myBallLayer;
@@ -37,7 +37,7 @@ public class BallDealDamage : MonoBehaviour
     {
         rb = gameObject.GetComponent<Rigidbody>();
         tf = gameObject.GetComponent<Transform>();
-        myBall = gameObject.GetComponentInChildren<Ball>();  // GetComponent<Ball>();
+        //myBall = gameObject.GetComponentInChildren<Ball>();  // GetComponent<Ball>();
         
     }
 
