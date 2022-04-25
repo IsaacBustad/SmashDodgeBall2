@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpikeBall : Ball, IEffects
+public class SpikeBall : Ball
 {
     public int rotationSpeed = 50;
 
@@ -24,7 +24,7 @@ public class SpikeBall : Ball, IEffects
     }
 
     // Strategy pattern
-    public void ballEffect()
+    public override void ballEffect()
     {
         // Spin ball
         ballSpin.SpinBall(rotationSpeed, gameObject);

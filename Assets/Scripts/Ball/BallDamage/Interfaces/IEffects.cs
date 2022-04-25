@@ -6,7 +6,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// This obsolete code. 
 public interface IEffects
 {
-    public void ballEffect();
+    //public void ballEffect();
 }

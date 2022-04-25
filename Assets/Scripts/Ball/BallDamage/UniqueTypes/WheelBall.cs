@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Ball is super fast! Fire particle
-public class WheelBall : Ball, IEffects
+public class WheelBall : Ball
 {
     public int rotationSpeed = 500;
 
@@ -25,7 +25,7 @@ public class WheelBall : Ball, IEffects
     }
 
     // Strategy pattern
-    public void ballEffect()
+    public override void ballEffect()
     {
         // Spin ball
         ballSpin.SpinBall(rotationSpeed, gameObject);

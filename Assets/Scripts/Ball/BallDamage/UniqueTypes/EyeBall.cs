@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EyeBall : Ball, IEffects
+public class EyeBall : Ball
 {
     public AudioClip audio;
     private bool hasPlayed = false;
@@ -18,7 +18,7 @@ public class EyeBall : Ball, IEffects
     }
 
     // Strategy pattern
-    public void ballEffect()
+    public override void ballEffect()
     {
 
         if (hasPlayed == false)

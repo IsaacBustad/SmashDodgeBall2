@@ -10,4 +10,10 @@ public class RedDodgeBall : Ball
     {
         damageElement = new BallBaseDamage();
     }
+
+    // Strategy pattern
+    public override void ballEffect()
+    {
+
+    }
 }
