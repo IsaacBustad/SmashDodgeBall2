@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9471f4c5bc5360f4688c3cc8f5c73185, type: 3}
   m_Name: WheelHit
   m_EditorClassIdentifier: 
-  effect: {fileID: 0}
-  hitAudio: {fileID: 0}
+  effect: {fileID: 5849950693692970601, guid: 87b11faeb82f55e4d8fcf3f1162d55fb, type: 3}
+  hitAudio: {fileID: 8300000, guid: 7e5020168d00bd14eb8ff4434a534f2c, type: 3}

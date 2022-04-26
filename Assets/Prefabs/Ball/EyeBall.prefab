@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myBall: {fileID: 7136469164222056354}
-  myDamageEffect: {fileID: 11400000, guid: 8feb2367d25b8fa4d9a7064ce44e1583, type: 2}
+  myDamageEffect: {fileID: 11400000, guid: 09181620717a2fe41acb35e88c777339, type: 2}
 --- !u!114 &1957905254002455381
 MonoBehaviour:
   m_ObjectHideFlags: 0
