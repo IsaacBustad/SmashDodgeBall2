@@ -21,8 +21,7 @@ public class PlayerOut : GetOut
 
     // coroutine to elim
     private IEnumerator DelayOut()
-    {
-        
+    {        
         yield return delayOut;
         GameObject.FindObjectOfType<WinLose>().LoadLose();
     }
