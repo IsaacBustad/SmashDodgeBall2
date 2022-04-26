@@ -14,7 +14,7 @@ public class BallDealDamage : MonoBehaviour
     private float mySpeedMult = 1f;
     private float maxVel = 1;
     
-    [SerializeField] private BallSpawner mySpawner;
+    public BallSpawner mySpawner;
 
     [SerializeField] private BallDamageEffect myDamageEffect;
     
