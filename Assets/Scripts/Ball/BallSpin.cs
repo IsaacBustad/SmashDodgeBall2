@@ -15,7 +15,7 @@ public class BallSpin : MonoBehaviour
 
     void Awake()
     {
-        ballDealDamage = gameObject.GetComponent<BallDealDamage>();
+        ballDealDamage = gameObject.GetComponentInParent(typeof(BallDealDamage)) as BallDealDamage;
     }
 
     void Update()
