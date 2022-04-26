@@ -1,3 +1,6 @@
+// creator Isaac Bustad
+// created 4/18/2022
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,14 +13,11 @@ public class BallDealDamage : MonoBehaviour
     public Ball myBall;
     private float mySpeedMult = 1f;
     private float maxVel = 1;
-    private LayerMask myBallLayer;
+    
+    [SerializeField] private BallSpawner mySpawner;
 
     [SerializeField] private BallDamageEffect myDamageEffect;
     
-    public LayerMask MyBallLayer
-    {
-        set { if (value == 7 || value == 8) { myBallLayer = value; } }
-    }
 
     public float MaxVel
     {
@@ -36,9 +36,7 @@ public class BallDealDamage : MonoBehaviour
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody>();
-        tf = gameObject.GetComponent<Transform>();
-        //myBall = gameObject.GetComponentInChildren<Ball>();  // GetComponent<Ball>();
-        
+        tf = gameObject.GetComponent<Transform>();        
     }
 
     // updates for physics Sys
@@ -92,7 +90,8 @@ public class BallDealDamage : MonoBehaviour
             {
                 Debug.Log("dammage");
                 charHealth.TakeDammage(myBall.damageElement.DamageNumber(), myBall.damageElement.KnockbackNumber(), tf);
-                
+
+                mySpawner.RemoveBallList(this.gameObject); 
                 Destroy(this.gameObject, 1f);
                 DesEffect();
             }
