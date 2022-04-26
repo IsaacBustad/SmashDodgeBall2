@@ -6,5 +6,5 @@ using UnityEngine;
 
 public class DetectionView : Element
 {
-    Bound bound;
+    public Bound bound;
 }
