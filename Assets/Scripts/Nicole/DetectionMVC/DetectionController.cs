@@ -9,7 +9,7 @@ public class DetectionController : Element
     BallSpawner ballSpawner;
     public void OnBallGroundHit(GameObject gameObject)
     {
-        if (gameObject.tag == "ball")
+        if (gameObject.tag == "Ball")
         {
             Destroy(gameObject);
             ballSpawner.RemoveBallList(gameObject);
