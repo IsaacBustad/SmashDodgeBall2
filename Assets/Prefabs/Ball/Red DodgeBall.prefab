@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f20aff89d7b3204aae8cd2e5f870a11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myBall: {fileID: 0}
+  myBall: {fileID: 9003521323761346489}
   myDamageEffect: {fileID: 11400000, guid: 8feb2367d25b8fa4d9a7064ce44e1583, type: 2}
 --- !u!114 &-772393661150342447
 MonoBehaviour:

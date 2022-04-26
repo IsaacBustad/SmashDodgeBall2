@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f20aff89d7b3204aae8cd2e5f870a11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myBall: {fileID: 0}
+  myBall: {fileID: 7136469164222056354}
   myDamageEffect: {fileID: 11400000, guid: 8feb2367d25b8fa4d9a7064ce44e1583, type: 2}
 --- !u!114 &1957905254002455381
 MonoBehaviour:
@@ -222,6 +222,21 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: -4063896011420803712, guid: 5f603b8c73c81724b9bdc1c65764eb4c, type: 3}
   m_PrefabInstance: {fileID: 476669194048621050}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3213451256750448789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4685815095215854714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a61b4f40fa436d446adf0e24de95e823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xAxis: 0
+  yAxis: 0
+  zAxis: 1
 --- !u!114 &7136469164222056354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,18 +253,3 @@ MonoBehaviour:
   ballLayer: 0
   rotationSpeed: 100
   audio: {fileID: 8300000, guid: 11ca41620738f9047b92bda986e89b43, type: 3}
---- !u!114 &3213451256750448789
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4685815095215854714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a61b4f40fa436d446adf0e24de95e823, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  xAxis: 0
-  yAxis: 0
-  zAxis: 1
