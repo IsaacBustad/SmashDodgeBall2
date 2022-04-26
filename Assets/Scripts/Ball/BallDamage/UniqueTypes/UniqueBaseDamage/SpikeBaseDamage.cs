@@ -6,11 +6,11 @@ public class SpikeBaseDamage : BallDamageElement
 {
     public override float DamageNumber()
     {
-        return 2f;
+        return 1f;
     }
 
     public override float KnockbackNumber()
     {
-        return 0.1f;
+        return 0.5f;
     }
 }

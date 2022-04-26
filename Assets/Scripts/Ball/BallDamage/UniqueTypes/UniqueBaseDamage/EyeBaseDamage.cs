@@ -6,11 +6,11 @@ public class EyeBaseDamage : BallDamageElement
 {
     public override float DamageNumber()
     {
-        return 0.5f;
+        return 0.3f;
     }
 
     public override float KnockbackNumber()
     {
-        return 0.5f;
+        return 0.3f;
     }
 }
