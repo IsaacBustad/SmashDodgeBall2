@@ -16,7 +16,6 @@ public class WheelBall : Ball
     void Start()
     {
         damageElement = new WheelBaseDamage();
-        ballSpin = new BallSpin();
     }
 
     void Update()

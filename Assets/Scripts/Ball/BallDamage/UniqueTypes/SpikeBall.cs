@@ -15,7 +15,6 @@ public class SpikeBall : Ball
     void Start()
     {
         damageElement = new SpikeBaseDamage();
-        ballSpin = new BallSpin();
     }
 
     void Update()

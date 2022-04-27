@@ -14,7 +14,6 @@ public class EyeBall : Ball
     void Start()
     {
         damageElement = new EyeBaseDamage();
-        ballSpin = gameObject.GetComponent<BallSpin>();
     }
     void Update()
     {

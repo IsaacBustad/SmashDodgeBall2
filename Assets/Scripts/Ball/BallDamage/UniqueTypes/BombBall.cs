@@ -14,7 +14,6 @@ public class BombBall : Ball
     void Start()
     {
         damageElement = new BombBaseDamage();
-        ballSpin = gameObject.GetComponent<BallSpin>();
     }
     void Update()
     {
