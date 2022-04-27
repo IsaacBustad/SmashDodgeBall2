@@ -86,7 +86,7 @@ public class NoBallS : MonoBehaviour, INPCState
            
 
         }
-        else{ Debug.Log("y9"); this.NPC.Rb.velocity = new Vector3(0, 0, 0);}
+        else{  this.NPC.Rb.velocity = new Vector3(0, 0, 0);}
         
 
         //Speed limit based on animation state (myACS)

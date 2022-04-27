@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class HasBallS : MonoBehaviour, INPCState
 {
+    [SerializeField] private Transform tstTrans;
+
 
     private NPCharacter NPC;
     private Vector3 borderLinePoint;
@@ -62,29 +64,31 @@ public class HasBallS : MonoBehaviour, INPCState
     
     public void ThrowBall()
     {
-
-        MoveToLine();
+        
+        //MoveToLine();
         // Wait until you're at the line
-        if (this.transform.position.z < 2)
-        {
+        /*if (this.transform.position.z < 2)
+        {*/
             if (throwEnable)
             {
+            Debug.Log("Throw Enable" + throwEnable);
+            //Debug.Log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+
+
+            //closestEnemy = NPC.FindClosestEnemy();
+            //Debug.Log("Closest Enemy: " + closestEnemy.name);
+
+
+            // Throw ball at them
+            //NPC.myThrower.startThrow = true;
+            //this.transform.LookAt(closestEnemy.transform);
+
+            NPC.myThrower.ThrowBall(NPC.MyACS, tstTrans.transform);
+               //NPC.myThrower.ThrowBall(NPC.MyACS, closestEnemy.transform);
+
                 throwEnable = false;
-                Debug.Log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-                //throwing = false;
-
-                closestEnemy = NPC.FindClosestEnemy();
-                Debug.Log("Closest Enemy: " + closestEnemy.name);
-
-
-                // Throw ball at them
-                NPC.myThrower.startThrow = true;
-                //this.transform.LookAt(closestEnemy.transform);
-
-                NPC.myThrower.ThrowBall(NPC.MyACS, closestEnemy.transform);
-
-                
-            }
+            Debug.Log("Throw Enable" + throwEnable);
+        }
             
 
             // Wait for thrower to be done - it's done when it puts you into idle
@@ -94,7 +98,7 @@ public class HasBallS : MonoBehaviour, INPCState
                 
             }
             
-        }
+        /*}*/
 
     }
     public void YoureIn()

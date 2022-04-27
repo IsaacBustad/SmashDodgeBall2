@@ -1,4 +1,4 @@
-// Written by Mike Mott
+/*// Written by Mike Mott
 // 3.29.2022
 
 using System.Collections;
@@ -11,20 +11,20 @@ using System.Linq;
 public class NPCharacter : MonoBehaviour
 {
 
-    private INPCState state;
+   
     private CharacterState myACS;
     private CharacterBroadcast myCharacterBroadcast;
 
-    private List<GameObject> allBalls = new List<GameObject>();
+*//*    private List<GameObject> allBalls = new List<GameObject>();
     private List<GameObject> allPlayers = new List<GameObject>();
     private List<GameObject> eligibleBalls = new List<GameObject>();
     private List<GameObject> eligiblePlayers = new List<GameObject>();
     private GameObject closestBall;
-    private GameObject closestEnemy;
+    private GameObject closestEnemy;*//*
 
     public Singleton daSingleton = Singleton.Instance;
 
-    private GameObject divider;
+*//*
     private Rigidbody rb;
     private float lowestDistance;
 
@@ -33,35 +33,36 @@ public class NPCharacter : MonoBehaviour
     private int redBallLayer = 7;
     private int blueBallLayer = 8;
     private int redPlayerLayer = 9;
-    private int bluePlayerLayer = 10;
+    private int bluePlayerLayer = 10;*/
 
-    
+/*    
     [SerializeField] private HasBallS hasBallState;
     [SerializeField] private NoBallS noBallState;
     [SerializeField] private OutS outState;
-    [SerializeField] public Thrower myThrower;
+    [SerializeField] public Thrower myThrower;*//*
 
 
     void Awake()
     {
 
-        
+        *//*myCharacterBroadcast = this.gameObject.GetComponent<CharacterBroadcast>();*//*
         myACS = this.gameObject.GetComponent<CharacterState>();
-        myCharacterBroadcast = this.gameObject.GetComponent<CharacterBroadcast>();
         Rb = this.gameObject.GetComponent<Rigidbody>();
-        Divider = GameObject.FindGameObjectWithTag("Divider");
+        *//*Divider = GameObject.FindGameObjectWithTag("Divider");*/
 
-        HasBallState = gameObject.GetComponent<HasBallS>();
+
+
+        /*HasBallState = gameObject.GetComponent<HasBallS>();
         NoBallState = gameObject.GetComponent<NoBallS>();
-        OutState = gameObject.GetComponent<OutS>();
+        OutState = gameObject.GetComponent<OutS>();*/
 
-        this.state = NoBallState;
+        /*this.state = NoBallState;*//*
 
 
 
         //***************************************************************************
 
-        WheelBall[] Ballss = GameObject.FindObjectsOfType<WheelBall>();
+*//*        WheelBall[] Ballss = GameObject.FindObjectsOfType<WheelBall>();
         List<WheelBall> ListOfBalls = Ballss.ToList();
 
         foreach (WheelBall p in ListOfBalls)
@@ -72,7 +73,7 @@ public class NPCharacter : MonoBehaviour
                
             }
             
-        }
+        }*//*
 
         
 
@@ -102,7 +103,11 @@ public class NPCharacter : MonoBehaviour
             GoGetBall();
         }
 
-        ThrowBall();
+        if(myACS.CurMoveState() != "t" && myThrower.hasBall)
+        {
+            ThrowBall();
+        }
+        
 
         Debug.Log(this.name + " move state: " + MyACS.CurMoveState());
         Debug.Log(this.name + " NPC state: " + this.state.ToString());
@@ -303,3 +308,4 @@ public class NPCharacter : MonoBehaviour
 
 
 }
+*/
