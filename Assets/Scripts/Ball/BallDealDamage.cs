@@ -118,4 +118,9 @@ public class BallDealDamage : MonoBehaviour
     {
         myDamageEffect.PlayEffect(tf);
     }
+
+    public override string ToString()
+    {
+        return "BallDealDamage To String! Yeah!";
+    }
 }

@@ -26,10 +26,10 @@ public class NoBallS : MonoBehaviour, INPCState
 
     public void GoGetBall()
     {   //Find the closest ball. Move to it, and pick it up.
-        
+
 
         closestBall = NPC.FindClosestBall();
-        
+
         if (closestBall != null)
         {
             //Debug.Log("me: " + this.name + " closest ballxxxxxxx: " + closestBall.name);
@@ -62,30 +62,41 @@ public class NoBallS : MonoBehaviour, INPCState
         //Set animation state
         NPC.MyACS.IsRun();
         this.transform.LookAt(aPoint);
-
+       
         if (gameObject.layer == redPlayerLayer && aPoint.z <= 0)
         {
             aPoint.z = 0;
+            
         }
+        
         else if (gameObject.layer == bluePlayerLayer && aPoint.z >= 0)
         {
             aPoint.z = 0;
+            
         }
-
+        
         float distanceToPoint = (aPoint - this.transform.position).magnitude;
+        
         if (distanceToPoint > 1.0f)
         {
+            
             Vector3 directionToPoint = (aPoint - this.NPC.transform.position).normalized;
+            
             NPC.Rb.AddForce(directionToPoint * 20, ForceMode.Force);
+           
 
-        }else{this.NPC.Rb.velocity = new Vector3(0, 0, 0);}
-
+        }
+        else{ Debug.Log("y9"); this.NPC.Rb.velocity = new Vector3(0, 0, 0);}
+        
 
         //Speed limit based on animation state (myACS)
         if (this.NPC.Rb.velocity.magnitude > this.NPC.MyACS.GetMoveSpeed())
         {
+            
             Vector3 tempVel = this.NPC.Rb.velocity.normalized;
+            
             this.NPC.Rb.velocity = this.NPC.MyACS.GetMoveSpeed() * tempVel;
+            
         }
 
 

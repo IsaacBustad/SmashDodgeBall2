@@ -105,12 +105,14 @@ private void Update()
     public void ThrowBall(CharacterState aCS, Transform targ )
     {
 
-        BallDealDamage aBallDam = ballOBJ.GetComponent<BallDealDamage>();
-        Rigidbody aBallRb = ballOBJ.GetComponent<Rigidbody>();
+        Debug.Log("BallObj: " + ballOBJ.ToString());
 
+        BallDealDamage aBallDam = ballOBJ.GetComponent<BallDealDamage>();
+
+        Debug.Log("BallDam?: " + aBallDam.ToString());
+        Rigidbody aBallRb = ballOBJ.GetComponent<Rigidbody>();
         aCS.IsThrow();
         aBallDam.myBall.damageElement = MultWrapper(aBallDam.myBall.damageElement);
-
         hasBall = false;
         startThrow = false;
         ballOBJ.transform.LookAt(targ);
@@ -119,7 +121,7 @@ private void Update()
         aBallRb.velocity = Vector3.zero;
         aBallDam.MaxVel = powMult * basePow;
         aBallDam.IsArmed = true;
-
+        
 
         //ballOBJ.GetComponent<Ball>().damageElement = MultWrapper(ballOBJ.GetComponent<Ball>().damageElement);
 

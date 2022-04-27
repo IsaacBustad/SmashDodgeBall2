@@ -18,7 +18,7 @@ public class HasBallS : MonoBehaviour, INPCState
     private int redPlayerLayer = 9;
     private int bluePlayerLayer = 10;
 
-
+    private bool throwEnable = true;
 
 
 
@@ -27,6 +27,7 @@ public class HasBallS : MonoBehaviour, INPCState
     void Awake()
     {
         NPC = gameObject.GetComponent<NPCharacter>();
+        
     }
 
 
@@ -57,7 +58,8 @@ public class HasBallS : MonoBehaviour, INPCState
         }
     }
 
-    bool throwing = true;
+
+    
     public void ThrowBall()
     {
 
@@ -65,9 +67,12 @@ public class HasBallS : MonoBehaviour, INPCState
         // Wait until you're at the line
         if (this.transform.position.z < 2)
         {
-            //throwing = false;
-            if (throwing == true)
+            if (throwEnable)
             {
+                throwEnable = false;
+                Debug.Log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+                //throwing = false;
+
                 closestEnemy = NPC.FindClosestEnemy();
                 Debug.Log("Closest Enemy: " + closestEnemy.name);
 
@@ -77,15 +82,16 @@ public class HasBallS : MonoBehaviour, INPCState
                 //this.transform.LookAt(closestEnemy.transform);
 
                 NPC.myThrower.ThrowBall(NPC.MyACS, closestEnemy.transform);
-                throwing = false;
+
+                
             }
-    
             
+
             // Wait for thrower to be done - it's done when it puts you into idle
             if (NPC.MyACS.CurMoveState() == "i")
             {
-                NPC.State = NPC.NoBallState;
-                throwing = false;
+                //NPC.State = NPC.NoBallState;
+                
             }
             
         }
@@ -102,17 +108,17 @@ public class HasBallS : MonoBehaviour, INPCState
         this.transform.LookAt(aPoint);
 
         
-        if (gameObject.layer == redPlayerLayer && aPoint.z >= 0)
+        if (gameObject.layer == redPlayerLayer && aPoint.z <= 0)
         {
             aPoint.z = 0;
         }
-        else if (gameObject.layer == bluePlayerLayer && aPoint.z <= 0)
+        else if (gameObject.layer == bluePlayerLayer && aPoint.z >= 0)
         {
             aPoint.z = 0;
         }
 
         float distanceToPoint = (aPoint - this.transform.position).magnitude;
-        if (distanceToPoint >= 1.0f)
+        if (distanceToPoint >= 2.0f)
         {
             Vector3 directionToPoint = (aPoint - this.NPC.transform.position).normalized;
             this.NPC.Rb.AddForce(directionToPoint * 20, ForceMode.Force);
@@ -131,11 +137,10 @@ public class HasBallS : MonoBehaviour, INPCState
             Vector3 tempVel = this.NPC.Rb.velocity.normalized;
             this.NPC.Rb.velocity = this.NPC.MyACS.GetMoveSpeed() * tempVel;
         }
-
     }
     public void MoveToLine()
     {
-        //Debug.Log("We're in MoveToLine");
+        // Debug.Log("We're in MoveToLine");
         // Assume divider line is centered on y-axis
         borderLinePoint.x = NPC.transform.position.x;
         borderLinePoint.y = NPC.transform.position.y;
@@ -143,12 +148,10 @@ public class HasBallS : MonoBehaviour, INPCState
         
 
         float distanceToPoint = (borderLinePoint - this.transform.position).magnitude;
-        if (distanceToPoint >= 3.0f)
+        if (distanceToPoint >= 2.0f)
         {
             MoveTo(borderLinePoint);
         }
-        
-
     }
 
     public override string ToString()

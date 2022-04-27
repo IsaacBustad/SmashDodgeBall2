@@ -57,18 +57,18 @@ public class NPCharacter : MonoBehaviour
 
         this.state = NoBallState;
 
-        
+
 
         //***************************************************************************
 
-        Ball[] Ballss = GameObject.FindObjectsOfType<Ball>();
-        List<Ball> ListOfBalls = Ballss.ToList();
+        WheelBall[] Ballss = GameObject.FindObjectsOfType<WheelBall>();
+        List<WheelBall> ListOfBalls = Ballss.ToList();
 
-        foreach (Ball p in ListOfBalls)
+        foreach (WheelBall p in ListOfBalls)
         {
-            if ((GameObject.FindObjectOfType<Ball>().gameObject.layer == redBallLayer && this.gameObject.layer == redPlayerLayer) || (GameObject.FindObjectOfType<Ball>().gameObject.layer == blueBallLayer && this.gameObject.layer == bluePlayerLayer))
+            if ((GameObject.FindObjectOfType<WheelBall>().gameObject.layer == redBallLayer && this.gameObject.layer == redPlayerLayer) || (GameObject.FindObjectOfType<WheelBall>().gameObject.layer == blueBallLayer && this.gameObject.layer == bluePlayerLayer))
             {
-                daSingleton.AllBalls.Add(GameObject.FindObjectOfType<Ball>().gameObject);
+                daSingleton.AllBalls.Add(GameObject.FindObjectOfType<WheelBall>().gameObject);
                
             }
             
@@ -181,7 +181,7 @@ public class NPCharacter : MonoBehaviour
             }
             
         } else { closestBall = null; }
-        Debug.Log("AllBalls Count: " + AllBalls.Count() + "\n  | Eligible Balls: " + EligibleBalls.Count() + "\n  | Closest Ball: " + closestBall.name);
+        //Debug.Log("AllBalls Count: " + AllBalls.Count() + "\n  | Eligible Balls: " + EligibleBalls.Count() + "\n  | Closest Ball: " + closestBall.name);
 
         return closestBall;
     }
